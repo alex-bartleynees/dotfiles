@@ -10,6 +10,12 @@ INSTALL_SCRIPTS=(
     install/fzf-tab.sh
     install/fd-find.sh
     install/bat.sh
+    fonts/jetbrainsmono.sh
+    fonts/fontawesome.sh
+    applications/alacritty.sh
+    applications/tmux.sh
+    applications/lazydocker.sh
+    application/lazygit.sh
 )
 
 # Execute each install script
