@@ -16,7 +16,7 @@ INSTALL_SCRIPTS=(
     applications/alacritty.sh
     applications/tmux.sh
     applications/lazydocker.sh
-    application/lazygit.sh
+    applications/lazygit.sh
 )
 
 # Execute each install script
