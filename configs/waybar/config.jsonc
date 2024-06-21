@@ -2,7 +2,7 @@
     "layer": "bottom",
     "position": "bottom",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["pulseaudio", "memory", "cpu", "battery","network", "clock"],
+    "modules-right": ["pulseaudio", "memory", "cpu", "battery","network", "clock", "tray"],
     "sway/window": {
         "max-length": 50
     },
@@ -39,5 +39,8 @@
     },
     "clock": {
         "format-alt": "{:%a, %d %b  %H:%M}"
-    }
+    },
+  "tray": {
+    "spacing": 10
+  }
 }
