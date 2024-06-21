@@ -1,12 +1,18 @@
 #!/bin/bash
 
-# Install Oh My Zsh using curl
-if [ -x "$(command -v curl)" ]; then
-    echo "Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    echo "Oh My Zsh installed successfully!"
+# Install zsh using dnf or apt
+if [ -x "$(command -v dnf)" ]; then
+    echo "Installing zsh on Fedora..."
+    sudo dnf install zsh
+    chsh -s $(which zsh)
+    echo "zsh installed successfully!"
+elif [ -x "$(command -v apt)" ]; then
+    echo "Installing zsh on Ubuntu..."
+    sudo apt update
+    sudo apt-get install zsh
+    chsh -s $(which zsh)
+    echo "zsh installed successfully!"
 else
-    echo "curl not found. Please install curl and run this script again."
+    echo "Unsupported package manager. Please install zsh manually."
     exit 1
 fi
-

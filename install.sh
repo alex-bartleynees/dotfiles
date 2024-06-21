@@ -3,6 +3,7 @@
 # List of install scripts
 INSTALL_SCRIPTS=(
     install/zsh.sh
+    install/oh-my-zsh.sh
     install/zsh-syntax-highlighting.sh
     install/zsh-autosuggestions.sh
     install/nvm.sh
