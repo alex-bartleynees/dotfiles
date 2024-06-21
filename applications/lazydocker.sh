@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# Install nvm using curl
+# Install lazydocker using curl
 if [ -x "$(command -v curl)" ]; then
-    echo "Installing nvm..."
+    echo "Installing lazydocker..."
     sh -c "$(curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash)"
-    nvm install --lts
-    echo "nvm installed successfully!"
+    echo "lazydocker installed successfully!"
 else
     echo "curl not found. Please install curl and run this script again."
     exit 1
