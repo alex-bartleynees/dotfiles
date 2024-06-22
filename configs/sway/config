@@ -25,6 +25,10 @@ exec --no-startup-id picom
 #exec --no-startup-id swaymsg output HDMI-1 pos 2560 1600
 exec --no-startup-id swaymsg output HDMI-1 transform 90 pos 1920 0
 exec --no-startup-id swaymsg output DP-3 pos 0 0
+exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec --no-startup-id /usr/libexec/bluetooth/bluetoothd &
+exec --no-startup-id blueman-applet &
+exec nm-applet &
 
 exec --no-startup-id swaybg -i ~/dotfiles/backgrounds/Clearnight.png -m fill
 exec --no-startup-id xss-lock -- ~/.config/sway/lock.sh
