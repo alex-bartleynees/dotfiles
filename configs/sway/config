@@ -8,10 +8,6 @@ set $term alacritty
 set $browser brave-browser
 set $screenclip grim -g "$(slurp -d)" - | wl-copy
 set $background ~/dotfiles/backgrounds/Clearnight.png
-set $mainMonitor eDP-1
-
-# System scaling
-output $mainMonitor scale 1.75
 
 # Window borders
 for_window [class="^.*"] border pixel 1
@@ -219,3 +215,5 @@ client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
 client.background        $base
 
 exec waybar
+
+include ~/.config/sway/$(hostname)/*

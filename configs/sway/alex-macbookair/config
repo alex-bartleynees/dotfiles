@@ -1,0 +1,4 @@
+set $mainMonitor eDP-1
+
+# System scaling
+output $mainMonitor scale 1.75
