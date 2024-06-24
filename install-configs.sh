@@ -47,6 +47,7 @@ DOTFILES=(
     ["tmux"]="$HOME/.config/tmux"
     ["waybar"]="$HOME/.config/waybar"
     ["wezterm"]="$HOME/.config/wezterm"
+    ["dunst"]="$HOME/.config/dunst"
 )
 
 # Create symbolic links for each entry in the DOTFILES array
