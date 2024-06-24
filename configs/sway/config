@@ -30,6 +30,7 @@ exec xss-lock -- $lock
 exec swayidle \
     timeout 300 'exec $lock' \
     timeout 600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dmps on"' \
     after-resume 'swaymsg "output * dpms on"' \
     before-sleep 'exec $lock'
 
