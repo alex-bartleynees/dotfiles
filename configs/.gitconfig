@@ -1,3 +1,16 @@
 [user]
 	email = alexbartleynees@gmail.com
-	name = Alex Bartley Nees
+  name = Alex Bartley Nees
+
+[init]
+  defaultBranch = main
+
+[core]
+	editor = nvim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  pager = delta
+
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
