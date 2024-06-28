@@ -12,6 +12,10 @@ elif [ -x "$(command -v apt)" ]; then
     sudo apt-get install zsh
     chsh -s $(which zsh)
     echo "zsh installed successfully!"
+elif [ -x "$(command -v pacman)" ]; then
+    echo "installing zsh on arch..."
+    sudo pacman -Syu zsh
+    echo "zsh installed successfully!"
 else
     echo "Unsupported package manager. Please install zsh manually."
     exit 1
