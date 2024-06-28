@@ -1,5 +1,8 @@
+exec $lock
+
 set $mainMonitor DP-1
 set $secondaryMonitor HDMI-A-1
+set $lock ~/dotfiles/configs/sway/lock.sh
 
 exec swaymsg output $mainMonitor pos 0 0 res 2560x1440
 exec swaymsg output $secondaryMonitor pos 2560 0 res 2560x1440 transform 90
@@ -7,3 +10,5 @@ exec swaymsg focus output $mainMonitor
 
 workspace 1 output $mainMonitor
 workspace 2 output $secondaryMonitor
+
+
