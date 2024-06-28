@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install lazygit using dnf or apt
+# Install lazygit using dnf or apt or pacman
 if [ -x "$(command -v dnf)" ]; then
     echo "Installing lazygit on Fedora..."
     sudo dnf copr enable atim/lazygit -y
@@ -12,6 +12,10 @@ elif [ -x "$(command -v apt)" ]; then
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
     tar xf lazygit.tar.gz lazygit
     sudo install lazygit /usr/local/bin    echo "lazygit installed successfully!"
+elif [ -x "$(command -v pacman)" ]; then
+    echo "installing lazygit on arch..."
+    sudo pacman -Syu lazygit
+    echo "lazygit installed successfully!"
 else
     echo "Unsupported package manager. Please install lazygit manually."
     exit 1

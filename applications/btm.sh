@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install bottom using dnf or apt
+# Install bottom using dnf or apt or pacman
 if [ -x "$(command -v dnf)" ]; then
     echo "Installing bottom on Fedora..."
     sudo dnf copr enable atim/bottom -y
@@ -10,6 +10,10 @@ elif [ -x "$(command -v apt)" ]; then
     echo "Installing bottom on Ubuntu..."
     sudo apt update
     sudo apt install bottom
+    echo "bottom installed successfully!"
+elif [ -x "$(command -v pacman)" ]; then
+    echo "installing bottom on arch..."
+    sudo pacman -Syu bottom
     echo "bottom installed successfully!"
 else
     echo "Unsupported package manager. Please install bottom manually."

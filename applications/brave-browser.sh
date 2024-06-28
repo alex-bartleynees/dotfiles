@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install brave-browser using dnf or apt
+# Install brave-browser using dnf or apt or pacman
 if [ -x "$(command -v dnf)" ]; then
     echo "Installing brave-browser on Fedora..."
     sudo dnf install dnf-plugins-core
@@ -16,6 +16,10 @@ elif [ -x "$(command -v apt)" ]; then
     sudo apt update
     sudo apt install brave-browser
     echo "brave-browser installed successfully!"
+elif [ -x "$(command -v pacman)" ]; then
+    echo "installing brave-browser on arch..."
+    sudo pacman -Syu brave-browser
+    echo "brave browser installed successfully!"
 else
     echo "Unsupported package manager. Please install brave-browser manually."
     exit 1

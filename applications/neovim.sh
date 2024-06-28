@@ -10,6 +10,10 @@ elif [ -x "$(command -v apt)" ]; then
     sudo apt update
     sudo apt install neovim
     echo "neovim installed successfully!"
+elif [ -x "$(command -v pacman)" ]; then
+    echo "installing neovim on arch..."
+    sudo pacman -Syu neovim
+    echo "neovim installed successfully!"
 else
     echo "Unsupported package manager. Please install neovim manually."
     exit 1
