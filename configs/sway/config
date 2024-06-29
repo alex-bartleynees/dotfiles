@@ -23,9 +23,6 @@ exec $wifi
 # Set background
 exec swaybg -i $background -m fill
 
-# Set lockscreen
-exec xss-lock -- $lock
-
 # Idle configuration
 exec swayidle \
     timeout 300 'exec $lock' \
