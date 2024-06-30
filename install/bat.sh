@@ -12,7 +12,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "bat installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing bat on arch..."
-    sudo pacman -Syu bat
+    sudo pacman -S bat
     echo "bat installed successfully!"
 else
     echo "unsupported package manager. please install bat manually."

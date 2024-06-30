@@ -13,7 +13,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "bottom installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing bottom on arch..."
-    sudo pacman -Syu bottom
+    sudo pacman -S bottom
     echo "bottom installed successfully!"
 else
     echo "Unsupported package manager. Please install bottom manually."

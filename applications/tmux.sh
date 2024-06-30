@@ -13,7 +13,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "tmux installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing tmux on arch..."
-    sudo pacman -Syu tmux
+    sudo pacman -S tmux
     echo "tmux installed successfully!"
 else
     echo "Unsupported package manager. Please install tmux manually."

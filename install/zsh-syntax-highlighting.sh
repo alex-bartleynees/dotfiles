@@ -15,7 +15,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "zsh syntax highlighting installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing zsh syntax highlighting on arch..."
-    sudo pacman -Syu zsh-syntax-highlighting
+    sudo pacman -S zsh-syntax-highlighting
     echo "zsh syntax highlighting installed successfully!"
 else
     echo "Unsupported package manager. Please install zsh syntax highlighting manually."

@@ -12,7 +12,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "ripgrep installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing ripgrep on arch..."
-    sudo pacman -syu ripgrep
+    sudo pacman -S ripgrep
     echo "ripgrep installed successfully!"
 else
     echo "unsupported package manager. please install ripgrep manually."

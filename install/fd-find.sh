@@ -12,7 +12,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "fd-find installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing fd-find on arch..."
-    sudo pacman -Syu fd-find
+    sudo pacman -S fd-find
     echo "fd-find installed successfully!"
 else
     echo "Unsupported package manager. Please install fd-find manually."

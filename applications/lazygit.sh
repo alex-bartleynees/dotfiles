@@ -14,7 +14,7 @@ elif [ -x "$(command -v apt)" ]; then
     sudo install lazygit /usr/local/bin    echo "lazygit installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing lazygit on arch..."
-    sudo pacman -Syu lazygit
+    sudo pacman -S lazygit
     echo "lazygit installed successfully!"
 else
     echo "Unsupported package manager. Please install lazygit manually."

@@ -18,7 +18,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "brave-browser installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing brave-browser on arch..."
-    sudo pacman -Syu brave-browser
+    sudo pacman -S brave-browser
     echo "brave browser installed successfully!"
 else
     echo "Unsupported package manager. Please install brave-browser manually."

@@ -14,7 +14,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "zsh installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing zsh on arch..."
-    sudo pacman -Syu zsh
+    sudo pacman -S zsh
     echo "zsh installed successfully!"
 else
     echo "Unsupported package manager. Please install zsh manually."

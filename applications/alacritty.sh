@@ -12,7 +12,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "alacritty installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing alacritty on arch..."
-    sudo pacman -Syu alacritty
+    sudo pacman -S alacritty
     echo "alacritty installed successfully!"
 else
     echo "Unsupported package manager. Please install alacritty manually."
