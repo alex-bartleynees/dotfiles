@@ -17,6 +17,9 @@ INSTALL_SCRIPTS=(
     applications/tmux.sh
     applications/lazydocker.sh
     applications/lazygit.sh
+    applications/neovim.sh
+    applications/brave-browser.sh
+    applications/btm.sh
 )
 
 # Execute each install script
