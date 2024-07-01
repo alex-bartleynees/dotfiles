@@ -9,32 +9,35 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-#set $wm_setting_app_browser chromium
-#exec --no-startup-id xrandr --output HDMI-0 --rotate right --right-of DP-0
+exec --no-startup-id xrandr --output DP-4 --rotate right --right-of DP-0
 
-for_window [class="^.*"] border pixel 1
+for_window [class=".*"] border pixel 1
+gaps inner 12
+gaps outer 1
+smart_gaps on
 
-set $mod Mod4
+#set $mod Mod4
 
-# set $mod Mod1
+set $mod Mod1
 
 exec --no-startup-id picom
-#exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/lucas-benjamin-R79qkPYvrcM-unsplash.jpg
-#exec --no-startup-id feh --bg-scale --geometry 2560x1440+0+0 ~/dotfiles/backgroudns/lucas-benjamin-unsplash.avif
-#exec --no-startup-id xss-lock -- ~/.config/i3/lock.sh
+exec --no-startup-id feh --bg-scale --geometry 2560x1440+0+0 ~/dotfiles/backgrounds/Clearnight.png
+exec --no-startup-id xss-lock -- ~/dotfiles/configs/i3/lock.sh
+exec --no-startup-id dunst
+exec --no-startup-id redshift
+exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec_always --no-startup-id mkfifo /tmp/xobpipe && tail -f /tmp/xobpipe | xob -t 2170 & disown
+
 #lock screen key command
-bindsym ctrl+$mod+l exec --no-startup-id sleep 1 && xset dpms force suspend
+bindsym ctrl+$mod+l exec --no-startup-id ~/dotfiles/configs/i3/lock.sh
 
 #exec --no-startup-id xrdb -merge ~/.Xresources
 #exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
 # kill any hanging polybar processes
-exec_always killall polybar
-exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
-
-#bindsym Print exec maim "/home/$USER/Pictures/Wallpapers/lucas-benjamin-R79qkPYvrcM-unsplash.jpg"
-#bindsym $mod+Print exec maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Wallpapers/lucas-benjamin-R79qkPYvrcM-unsplash.jpg"
-#bindsym Shift+Print exec maim --select "/home/$USER/Pictures/Wallpapers/lucas-benjamin-R79qkPYvrcM-unsplash.jpg"
+exec_always --no-startup-id killall polybar
+exec_always --no-startup-id ~/dotfiles/configs/polybar/launch_polybar.sh
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec maim | xclip -selection clipboard -t image/png
@@ -77,16 +80,15 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec env XCURSOR_SIZE=16 alacritty
 bindsym $mod+Shift+Return exec brave
-bindsym $mod+d exec --no-startup-id rofi -show drun
 exec_always --no-startup-id picom
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-#bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+space exec --no-startup-id rofi -show combi
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
@@ -144,17 +146,17 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-#workspace 1 output DP-0
-#workspace 2 output HDMI-0
+workspace 1 output DP-0
+workspace 2 output DP-2
 
-#workspace 3 output DP-0
-#workspace 4 output DP-0
-#workspace 5 output DP-0
-#workspace 6 output DP-0
-#workspace 7 output DP-0
-#workspace 8 output DP-0
-#workspace 9 output DP-0
-#workspace 10 output DP-0
+workspace 3 output DP-0
+workspace 4 output DP-0
+workspace 5 output DP-0
+workspace 6 output DP-0
+workspace 7 output DP-0
+workspace 8 output DP-0
+workspace 9 output DP-0
+workspace 10 output DP-0
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
