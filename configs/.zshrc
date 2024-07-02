@@ -117,3 +117,4 @@ alias code="code --enable-features=UseOzonePlatform --enable-features=WaylandWin
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload -U compinit; compinit
+export PATH=$PATH:$HOME/.dotnet
