@@ -23,14 +23,6 @@ exec $wifi
 # Set background
 exec swaybg -i $background -m fill
 
-# Idle configuration
-exec swayidle \
-    timeout 300 'exec $lock' \
-    timeout 600 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dmps on"' \
-    after-resume 'swaymsg "output * dpms on"' \
-    before-sleep 'exec $lock'
-
 #lock screen key command
 bindsym ctrl+$mod+l exec $lock  
 
