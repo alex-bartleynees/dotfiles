@@ -1,3 +1,5 @@
+include ~/dotfiles/configs/sway/background
+
 # Variables
 set $mod Mod4
 # set $mod Mod1
@@ -7,7 +9,6 @@ set $bluetooth blueman-applet &
 set $term alacritty
 set $browser brave-browser
 set $screenclip grim -g "$(slurp -d)" - | wl-copy
-set $background ~/dotfiles/backgrounds/Clearnight.png
 
 # Window borders
 for_window [class="^.*"] border pixel 1
