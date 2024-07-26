@@ -1,4 +1,4 @@
-include ~/dotfiles/configs/sway/background
+include ~/.config/sway/background
 
 # Variables
 set $mod Mod4
@@ -168,7 +168,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec waybar
+exec_always waybar
 
 include ~/.config/sway/colorscheme
 include ~/.config/sway/$(hostname)/*

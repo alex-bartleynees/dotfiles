@@ -1,0 +1,64 @@
+{
+  "layer": "bottom",
+  "position": "bottom",
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-right": [
+    "pulseaudio",
+    "memory",
+    "cpu",
+    "disk",
+    "battery",
+    "backlight",
+    "network",
+    "clock",
+    "tray",
+  ],
+  "sway/window": {
+    "max-length": 50,
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume:2}%",
+    "format-bluetooth": "{icon}  {volume}%",
+    "format-muted": "MUTE",
+    "format-icons": {
+      "headphones": "",
+      "default": ["", ""],
+    },
+    "scroll-step": 5,
+  },
+  "memory": {
+    "interval": 5,
+    "format": "Mem {}%",
+  },
+  "cpu": {
+    "interval": 5,
+    "format": "CPU {usage:2}%",
+  },
+  "disk": {
+    "interval": 30,
+    "format": " {percentage_used}%",
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""],
+    "on-scroll-up": "",
+    "on-scroll-down": "",
+  },
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-disconnected": "Disconnected ⚠",
+    "interval": 7,
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
+  },
+  "clock": {
+    "format-alt": "{:%a, %d %b  %H:%M}",
+  },
+  "tray": {
+    "spacing": 10,
+  },
+}
