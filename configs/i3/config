@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-exec --no-startup-id xrandr --output DP-4 --rotate right --right-of DP-0
+exec --no-startup-id xrandr --output DP-4 --rotate right --right-of DP-0 --auto
 
 for_window [class=".*"] border pixel 1
 gaps inner 12
@@ -21,7 +21,7 @@ smart_gaps on
 set $mod Mod1
 
 exec --no-startup-id picom
-exec --no-startup-id feh --bg-scale --geometry 2560x1440+0+0 ~/dotfiles/backgrounds/arnold-dogelis-9ftemxDaNXQ-unsplash.jpg --geometry 1440x2560+2560+0 ~/dotfiles/backgrounds/arnold-dogelis-9ftemxDaNXQ-unsplash.jpg
+exec --no-startup-id feh --bg-fill --geometry 2560x1440+0+0 ~/dotfiles/backgrounds/coldtrees.jpg --geometry 1440x2560+2560+0 ~/dotfiles/backgrounds/coldtrees.jpg
 exec --no-startup-id xss-lock -- ~/dotfiles/configs/i3/lock.sh
 exec --no-startup-id dunst
 #exec --no-startup-id redshift
