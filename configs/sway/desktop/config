@@ -9,6 +9,8 @@ exec swaymsg focus output $mainMonitor
 workspace 1 output $mainMonitor
 workspace 2 output $secondaryMonitor
 
+exec sway-audio-idle-inhibit
+
 # Idle configuration
 exec swayidle \
     timeout 300 'exec $lock' \
