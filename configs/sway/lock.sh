@@ -5,7 +5,7 @@ set -e
 swaymsg "output * dpms on"
 
 # Run swaylock
-swaylock -i $BACKGROUND -u --ignore-empty-password --show-failed-attempts
+swaylock -i $BACKGROUND
 
 # Re-enable DPMS settings after unlocking
 swaymsg "output * dpms on"

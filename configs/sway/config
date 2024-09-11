@@ -168,7 +168,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec_always waybar
+exec waybar
 
 include ~/.config/sway/colorscheme
 include ~/.config/sway/$(hostname)/*
