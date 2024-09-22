@@ -2,7 +2,6 @@
 
 # List of install scripts
 INSTALL_SCRIPTS=(
-    install/zsh.sh
     install/oh-my-zsh.sh
     install/zsh-syntax-highlighting.sh
     install/zsh-autosuggestions.sh
@@ -11,6 +10,7 @@ INSTALL_SCRIPTS=(
     install/fzf-tab.sh
     install/fd-find.sh
     install/bat.sh
+    install/ripgrep.sh
     fonts/jetbrainsmono.sh
     fonts/fontawesome.sh
     applications/alacritty.sh
@@ -20,6 +20,7 @@ INSTALL_SCRIPTS=(
     applications/neovim.sh
     applications/brave-browser.sh
     applications/btm.sh
+    install/tpm.sh
 )
 
 # Execute each install script
