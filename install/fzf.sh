@@ -7,7 +7,7 @@ if [ -x "$(command -v dnf)" ]; then
     echo "fzf installed successfully!"
 elif [ -x "$(command -v apt)" ]; then
     echo "Installing fzf on Ubuntu..."
-    sudo apt install -y zsh-syntax-highlighting
+    sudo apt install -y fzf
     echo "fzf installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing fzf on arch..."
