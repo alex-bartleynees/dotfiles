@@ -9,6 +9,7 @@ elif [ -x "$(command -v apt)" ]; then
     echo "Installing fd-find on Ubuntu..."
     sudo apt update
     sudo apt install fd-find
+    ln -s $(which fdfind) ~/.local/bin/fd
     echo "fd-find installed successfully!"
 elif [ -x "$(command -v pacman)" ]; then
     echo "installing fd-find on arch..."
