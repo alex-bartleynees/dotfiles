@@ -1,0 +1,6 @@
+[terminal]
+vt = 1
+
+[default_session]
+command = "env GTK_THEME=Adwaita-dark sway --config /etc/greetd/sway-config"
+user = "greetd"
