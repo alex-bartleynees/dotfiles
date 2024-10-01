@@ -110,16 +110,23 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tx=tmuxinator
-alias code="code --enable-features=UseOzonePlatform --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto"
+alias k=kubectl
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload -U compinit; compinit
+
 export PATH=$PATH:$HOME/.dotnet
 export PATH="$HOME/.local/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:$(go env GOPATH)/bin
+
+# Add .NET Core SDK tools
+export PATH="$PATH:/home/alexbartleynees/.dotnet/tools"
