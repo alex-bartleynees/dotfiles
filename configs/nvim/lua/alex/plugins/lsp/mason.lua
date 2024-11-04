@@ -39,6 +39,7 @@ return {
         "pyright",
         "angularls",
         "astro",
+        "helm_ls"
       },
     })
 
