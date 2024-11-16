@@ -130,3 +130,8 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/home/alexbartleynees/.dotnet/tools"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+eval "$(zoxide init zsh)"
