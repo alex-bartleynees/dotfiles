@@ -135,3 +135,7 @@ export PATH="$PATH:/home/alexbartleynees/.dotnet/tools"
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 eval "$(zoxide init zsh)"
+export PATH="$PATH:/home/alexbn/.dotnet/tools"
+export DOTNET_ROOT=~/.dotnet
+export PATH="/opt/rider/bin:$PATH"
+export PATH=$HOME/.config/rofi/scripts:$PATH
