@@ -3,6 +3,8 @@ set $mainMonitor eDP-1
 # System scaling
 output $mainMonitor scale 1.75
 
+exec sway-audio-idle-inhibit
+
 # Idle configuration
 exec swayidle \
     timeout 300 'exec $lock' \
