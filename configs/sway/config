@@ -1,13 +1,13 @@
 include ~/.config/sway/background
 
 # Variables
-set $mod Mod4
-# set $mod Mod1
+#set $mod Mod4
+set $mod Mod1
 set $lock ~/dotfiles/configs/sway/lock.sh
 set $wifi nm-applet &
 set $bluetooth blueman-applet &
 set $term alacritty
-set $browser brave-browser
+set $browser brave
 set $screenclip grim -g "$(slurp -d)" - | wl-copy
 
 # Window borders
@@ -60,6 +60,7 @@ bindsym $mod+d exec launcher_t3
 
 # start rofi powermenu
 bindsym $mod+shift+p exec powermenu_t1
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
