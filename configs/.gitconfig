@@ -3,7 +3,7 @@
   name = Alex Bartley Nees
 
 [init]
-  defaultBranch = main
+	defaultBranch = main
 
 [core]
 	editor = nvim
@@ -14,3 +14,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[pull]
+	rebase = true
