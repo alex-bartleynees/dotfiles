@@ -153,6 +153,30 @@ return {
           },
         })
       end,
+      ["dockerls"] = function()
+      -- configure docker language server
+      lspconfig["dockerls"].setup({
+        capabilities = capabilities,
+        filetypes = { "dockerfile" },
+        root_dir = util.root_pattern("Dockerfile", "docker-compose.yml", "docker-compose.yaml"),
+        settings = {
+          docker = {
+            languageserver = {
+              diagnostics = {
+                enable = true,
+                deprecatedMaintainer = "warning",
+                directiveCasing = "warning",
+                emptyContinuationLine = "warning",
+              },
+              formatter = {
+                enable = true,
+                ignoreMultilineInstructions = false,
+              },
+            },
+          },
+        },
+      })
+    end,  
       ["helm_ls"] = function()
         -- configure helm server
         lspconfig["helm_ls"].setup({

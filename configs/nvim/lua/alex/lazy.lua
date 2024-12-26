@@ -20,3 +20,4 @@ require("lazy").setup({ { import = "alex.plugins" }, { import = "alex.plugins.ls
     notify = false,
   },
 })
+
