@@ -30,7 +30,7 @@ no=' No'
 rofi_cmd() {
 	rofi -dmenu \
 		-p "$host" \
-		-mesg "Uptime-test: $uptime" \
+		-mesg "Uptime: $uptime" \
 		-theme ${dir}/${theme}.rasi
 }
 
