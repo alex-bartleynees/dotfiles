@@ -6,7 +6,7 @@ set $mod Mod1
 set $lock ~/dotfiles/configs/sway/lock.sh
 set $wifi nm-applet &
 set $bluetooth blueman-applet &
-set $term alacritty
+set $term ghostty
 set $browser brave
 set $screenclip grim -g "$(slurp -d)" - | wl-copy
 
@@ -186,6 +186,7 @@ bindsym $mod+Ctrl+minus scratchpad show
 
 # start udiskie for automounting external drives
 exec --no-startup-id udiskie --tray
+#xwayland disable
 
 include ~/.config/sway/colorscheme
 include ~/.config/sway/$(hostname)/*
