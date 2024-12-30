@@ -3,7 +3,7 @@ include ~/.config/sway/background
 # Variables
 #set $mod Mod4
 set $mod Mod1
-set $lock ~/dotfiles/configs/sway/lock.sh
+set $lock ~/.config/sway/lock.sh
 set $wifi nm-applet &
 set $bluetooth blueman-applet &
 set $term ghostty
