@@ -1,20 +1,20 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.28/schema.json",
-  "app_specific_configuration_path": "$Env:USERPROFILE/applications.yaml",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 14,
-  "default_container_padding": 14,
+  "default_workspace_padding": 4,
+  "default_container_padding": 4,
   "border": true,
   "border_implementation": "Komorebi",
-  "border_width": 2,
+  "border_width": 4,
   "border_offset": -1,
-  "border_style": "Square",
+  "border_style": "Rounded",
   "border_colours": {
     "single": "#cba6f7",
     "stack": "#cba6f7",
     "monocle": "#cba6f7",
-    "unfocused": "#808080"
+    "unfocused": "#dce0e8"
   },
   "transparency": false,
   "transparency_alpha": 240,
@@ -24,9 +24,9 @@
     "label": "Title",
     "tabs": {
       "width": 300,
-      "focused_text": "#00a542",
-      "unfocused_text": "#b3b3b3",
-      "background": "#141414",
+      "focused_text": "#f5c2e7",
+      "unfocused_text": "#cdd6f4",
+      "background": "#1e1e2e",
       "font_family": "Jetbrains Mono",
       "font_size": 14
     }
@@ -34,6 +34,14 @@
   "animation": {
     "enabled": false
   },
+  "display_index_preferences": {
+    "0": "GSM5B80-4&20302788&0&UID200195",
+    "1": "GSM5C4C-4&20302788&0&UID249395"
+  },
+  "bar_configurations": [
+    "C:\\Users\\AlexanderNees\\komorebi.bar.json",
+    "C:\\Users\\AlexanderNees\\komorebi.bar.2.json"
+  ],
   "monitors": [
     {
       "workspaces": [
