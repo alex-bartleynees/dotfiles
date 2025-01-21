@@ -107,6 +107,7 @@ return {
       ["csharp_ls"] = function()
         -- configure cs server
         lspconfig["csharp_ls"].setup({
+          cmd = { "csharp-ls" },
           capabilities = capabilities,
           handlers = {
             ["textDocument/definition"] = require('csharpls_extended').handler,
