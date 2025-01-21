@@ -113,6 +113,9 @@ return {
             ["textDocument/definition"] = require('csharpls_extended').handler,
             ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
           },
+          init_options = {
+            dotnetPath = os.getenv("DOTNET_ROOT") .. "/dotnet"
+          },
         })
       end,
       ["angularls"] = function()
