@@ -45,8 +45,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec $browser
+bindsym $mod+t exec $term
+bindsym $mod+b exec $browser
 
 # start rofi (a program launcher)
 bindsym $mod+d exec launcher_t3
