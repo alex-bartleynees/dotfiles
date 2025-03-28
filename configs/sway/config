@@ -58,7 +58,7 @@ bindsym $mod+d exec launcher_t3
 bindsym $mod+shift+p exec powermenu_t1
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # change focus
 bindsym $mod+h focus left
