@@ -14,6 +14,24 @@ return {
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
+    -- Add these new dependencies for Copilot
+    {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup({
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+        })
+      end,
+    },
+    {
+      "zbirenbaum/copilot-cmp",
+      config = function()
+        require("copilot_cmp").setup()
+      end,
+    },
   },
   config = function()
     local cmp = require("cmp")
@@ -45,7 +63,8 @@ return {
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = "nvim_lsp"},
+        { name = "copilot" }, -- Add Copilot as first source for priority
+        { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
@@ -56,6 +75,10 @@ return {
         format = lspkind.cmp_format({
           maxwidth = 50,
           ellipsis_char = "...",
+          -- Add Copilot icon to lspkind formatting
+          symbol_map = {
+            Copilot = "",
+          }
         }),
       },
     })
