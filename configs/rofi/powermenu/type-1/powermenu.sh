@@ -87,7 +87,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-    ~/dotfiles/configs/sway/lock.sh
+    ~/.config/dotfiles/configs/sway/lock.sh
         ;;
     $suspend)
 		run_cmd --suspend
