@@ -172,7 +172,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec waybar
+#exec waybar
 
 # Sway has a "scratchpad", which is a bag of holding for windows.
 # You can send windows there and get them back later.
