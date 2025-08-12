@@ -1,14 +1,20 @@
 * {
-    bg-col:  #1e1e2e;
-    bg-col-light: #1e1e2e;
-    border-col: #1e1e2e;
-    selected-col: #1e1e2e;
-    blue: #89b4fa;
-    fg-col: #cdd6f4;
-    fg-col2: #f38ba8;
-    grey: #6c7086;
+    bg-col:  #2d353b;
+    bg-col-light: #343f44;
+    border-col: #a7c080;
+    selected-col: #3d484d;
+    blue: #7fbbb3;
+    purple: #d699b6;
+    cyan: #83c092;
+    green: #a7c080;
+    red: #e67e80;
+    orange: #e69875;
+    yellow: #dbbc7f;
+    fg-col: #d3c6aa;
+    fg-col2: #a7c080;
+    grey: #859289;
     width: 600;
-    font: "JetBrainsMono Nerd Font 18";
+    font: "JetBrainsMono Nerd Font 14";
 }
 
 element-text, element-icon , mode-switcher {
@@ -17,14 +23,23 @@ element-text, element-icon , mode-switcher {
 }
 
 window {
-    height: 360px;
     border: 3px;
     border-color: @border-col;
     background-color: @bg-col;
+    border-radius: 8px;
+    width: 800px;
 }
 
 mainbox {
     background-color: @bg-col;
+    enabled:                     true;
+    spacing:                     8px;
+    margin:                      0px;
+    padding:                     8px;
+    border:                      0px solid;
+    border-radius:               0px 0px 0px 0px;
+    background-color:            transparent;
+    children:                    [ "inputbar", "listview" ]; 
 }
 
 inputbar {
@@ -58,8 +73,8 @@ listview {
     border: 0px 0px 0px;
     padding: 6px 0px 0px;
     margin: 10px 0px 0px 20px;
-    columns: 2;
-    lines: 5;
+    columns: 5;
+    lines: 3;
     background-color: @bg-col;
 }
 
@@ -67,10 +82,29 @@ element {
     padding: 5px;
     background-color: @bg-col;
     text-color: @fg-col  ;
+      enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     15px 10px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @selected-col;
+    background-color:            transparent;
+    orientation:                 vertical;
+    cursor:                      pointer;
 }
 
 element-icon {
-    size: 25px;
+    size: 50px;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
 }
 
 element selected {
