@@ -33,7 +33,7 @@ textbox {
     font: "JetBrainsMono Nerd Font Bold 12";
     border-radius: 0px;
     padding: 0px;
-    horizontal-align: 0.5;
+    horizontal-align: 0.25;
 }
 
 prompt {
@@ -61,7 +61,7 @@ element {
     border-radius: 12px;
     background-color: transparent;
     cursor: pointer;
-    orientation: vertical;
+    orientation: horizontal;
     children: [element-icon, element-text];
 }
 
