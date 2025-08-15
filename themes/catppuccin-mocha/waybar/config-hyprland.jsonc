@@ -45,6 +45,8 @@
     "separate-outputs": true,
     "rewrite": {
       "(.*) — Mozilla Firefox": "🌎 $1",
+      "(.*) - Chromium": "🌐 $1",
+      "(.*) - Brave": "🌐 $1",
       "(.*) - Visual Studio Code": "󰨞 $1",
       "(.*) - vim": " $1",
       "(.*) - nvim": " $1",
@@ -55,8 +57,8 @@
     "format-bluetooth": "{icon}  {volume}%",
     "format-muted": "󰝟 Muted",
     "format-icons": {
-      "headphones": "",
-      "default": ["", ""],
+      "headphones": "",
+      "default": ["", ""],
     },
     "scroll-step": 5,
   },
@@ -74,12 +76,12 @@
   },
   "disk": {
     "interval": 30,
-    "format": "  {percentage_used}%",
+    "format": " {percentage_used}%",
   },
   "backlight": {
     "device": "intel_backlight",
     "format": "{percent}% {icon}",
-    "format-icons": ["", ""],
+    "format-icons": ["", ""],
     "on-scroll-up": "brightnessctl set 5%+",
     "on-scroll-down": "brightnessctl set 5%-",
     "tooltip-format": "Brightness: {percent}%",
@@ -92,7 +94,7 @@
   },
   "battery": {
     "format": "{capacity}% {icon}",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": ["", "", "", "", ""],
   },
   "clock": {
     "format": "{:%H:%M}",
