@@ -1,5 +1,5 @@
 configuration{
-    modi: "run,window,combi";
+    modi: "run,window,combi,drun";
     icon-theme: "Adwaita";
     fallback-icon: "application-x-executable";
     cycle: true;
