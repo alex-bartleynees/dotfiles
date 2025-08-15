@@ -1,0 +1,6 @@
+@import "catppuccin-mocha.rasi"
+@import "powermenu-base.rasi"
+
+* {
+    accent-color: @purple;
+}
