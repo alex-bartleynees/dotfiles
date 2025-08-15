@@ -49,13 +49,13 @@ bindsym $mod+t exec $term
 bindsym $mod+b exec $browser
 
 # start rofi (a program launcher)
-bindsym $mod+d exec launcher_t3
+#bindsym $mod+d exec launcher_t3
 #bindsym $mod+d exec rofi -show drun
 #bindsym $mod+space exec rofi -show combi
 #bindsym $mod+Tab exec rofi -show window
 
 # start rofi powermenu
-bindsym $mod+shift+p exec powermenu_t1
+#bindsym $mod+shift+p exec powermenu_t1
 
 # kill focused window
 bindsym $mod+q kill
