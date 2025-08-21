@@ -8,10 +8,11 @@
 THEME="${1:-powermenu}"
 
 # Options
-shutdown=' Shutdown'
-reboot=' Reboot'
-lock=' Lock'
-logout=' Logout'
+shutdown=' Shutdown'
+reboot=' Reboot'
+lock=' Lock'
+suspend=' Suspend'
+logout=' Logout'
 
 # CMDs
 uptime="$(awk '{print int($1/86400)"d "int($1%86400/3600)"h "int(($1%3600)/60)"m"}' /proc/uptime)"
@@ -28,7 +29,7 @@ rofi_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$lock\n$logout\n$reboot\n$shutdown" | rofi_cmd
+	echo -e "$lock\n$logout\n$suspend\n$reboot\n$shutdown" | rofi_cmd
 }
 
 # Detect current compositor
@@ -48,20 +49,10 @@ run_cmd() {
             systemctl poweroff
         elif [[ $1 == '--reboot' ]]; then
             systemctl reboot
+        elif [[ $1 == '--suspend' ]]; then
+            systemctl suspend
         elif [[ $1 == '--logout' ]]; then
-            compositor="$(get_compositor)"
-            case "$compositor" in
-                "hyprland")
-                    hyprctl dispatch exit
-                    ;;
-                "sway")
-                    killall sway
-                    ;;
-                *)
-                    echo "Unknown compositor, cannot logout"
-                    exit 1
-                    ;;
-            esac
+           loginctl terminate-user ""
         else
             exit 0
         fi

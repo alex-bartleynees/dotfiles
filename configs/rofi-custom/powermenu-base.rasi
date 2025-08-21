@@ -47,7 +47,7 @@ prompt {
 listview {
     background-color: transparent;
     columns: 1;
-    lines: 4;
+    lines: 5;
     spacing: 12px;
     padding: 24px;
     margin: 0px;
