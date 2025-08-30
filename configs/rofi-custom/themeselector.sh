@@ -16,6 +16,18 @@ get_available_themes() {
     find "$THEMES_DIR" -name "*.nix" -not -name "default.nix" -exec basename {} .nix \; | sort
 }
 
+# Parse wallpaper path from theme nix file
+get_wallpaper_from_theme() {
+    local theme_name="$1"
+    local theme_file="$THEMES_DIR/$theme_name.nix"
+    
+    if [[ -f "$theme_file" ]]; then
+        grep -A1 'wallpaper\s*=' "$theme_file" | \
+        sed -n 's/.*"\([^"]*\)".*/\1/p' | \
+        head -1
+    fi
+}
+
 # Theme icons
 catppuccin_mocha='Catppuccin Mocha'
 tokyo_night='Tokyo Night'
@@ -56,6 +68,14 @@ switch_theme() {
     
     echo "Switching to theme: $theme_name"
     
+    local wallpaper_path
+    wallpaper_path=$(get_wallpaper_from_theme "$theme_name")
+    
+    if [[ -n "$wallpaper_path" ]]; then
+        wallpaper_path="${wallpaper_path/\$\{inputs.dotfiles\}/~/.config/dotfiles}"
+        wallpaper_path="${wallpaper_path/#\~/$HOME}"
+    fi
+    
     if [[ ! -d "$specialisation_path" ]]; then
         echo "Error: Specialisation '$theme_name' not found at $specialisation_path"
         if command -v notify-send >/dev/null 2>&1; then
@@ -70,8 +90,10 @@ switch_theme() {
             notify-send "Theme Switched" "Successfully switched to $theme_name theme"
         fi
         
-        if [[ -n "$BACKGROUND" ]] && command -v swww >/dev/null 2>&1; then
-            (sleep 3 && swww img "$BACKGROUND") &
+        # Set wallpaper with swww if available and wallpaper path was found
+        if [[ -n "$wallpaper_path" ]] && command -v swww >/dev/null 2>&1; then
+            echo "Setting wallpaper: $wallpaper_path"
+            swww img "$wallpaper_path" &
         fi
     else
         echo "Failed to switch to $theme_name theme"
