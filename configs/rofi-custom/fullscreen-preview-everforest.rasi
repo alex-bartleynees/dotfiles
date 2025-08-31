@@ -1,0 +1,49 @@
+@theme "fullscreen-preview"
+
+* {
+    bg-col: #2d353b;
+    bg-col-light: #343f44;
+    border-col: #a7c080;
+    selected-col: #3d484d;
+    blue: #7fbbb3;
+    purple: #d699b6;
+    cyan: #83c092;
+    green: #a7c080;
+    red: #e67e80;
+    orange: #e69875;
+    yellow: #dbbc7f;
+    fg-col: #d3c6aa;
+    fg-col2: #a7c080;
+    grey: #859289;
+    
+    background-color: @bg-col;
+    text-color: @fg-col;
+}
+
+window {
+    background-color: #2d353bcc;
+}
+
+wrap {
+    background-image: linear-gradient(#d3c6aa0d, #d3c6aa66);
+    border-color: @border-col;
+    children: [ inputbar ];
+}
+
+element {
+    background-image: linear-gradient(#d3c6aa0d, #d3c6aa33);
+    border-color: #a7c08026;
+}
+
+element selected {
+    background-image: linear-gradient(#3d484d40, #3d484d19);
+    border-color: @border-col;
+}
+
+entry {
+    placeholder-color: @grey;
+}
+
+message {
+    enabled: false;
+}

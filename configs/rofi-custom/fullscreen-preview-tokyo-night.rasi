@@ -1,0 +1,49 @@
+@theme "fullscreen-preview"
+
+* {
+    bg-col: #1a1b26;
+    bg-col-light: #24283b;
+    border-col: #7aa2f7;
+    selected-col: #283457;
+    blue: #7aa2f7;
+    purple: #bb9af7;
+    cyan: #7dcfff;
+    green: #9ece6a;
+    red: #f7768e;
+    orange: #ff9e64;
+    yellow: #e0af68;
+    fg-col: #c0caf5;
+    fg-col2: #bb9af7;
+    grey: #565f89;
+    
+    background-color: @bg-col;
+    text-color: @fg-col;
+}
+
+window {
+    background-color: #1a1b26cc;
+}
+
+wrap {
+    background-image: linear-gradient(#c0caf50d, #c0caf566);
+    border-color: @border-col;
+    children: [ inputbar ];
+}
+
+element {
+    background-image: linear-gradient(#c0caf50d, #c0caf533);
+    border-color: #7aa2f726;
+}
+
+element selected {
+    background-image: linear-gradient(#28345740, #28345719);
+    border-color: @border-col;
+}
+
+entry {
+    placeholder-color: @grey;
+}
+
+message {
+    enabled: false;
+}
