@@ -52,7 +52,7 @@ run_cmd() {
         elif [[ $1 == '--suspend' ]]; then
             systemctl suspend
         elif [[ $1 == '--logout' ]]; then
-           loginctl terminate-user ""
+           loginctl terminate-user "$user"
         else
             exit 0
         fi

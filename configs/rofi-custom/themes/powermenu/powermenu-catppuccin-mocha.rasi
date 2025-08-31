@@ -1,5 +1,5 @@
-@import "catppuccin-mocha.rasi"
-@import "powermenu-base.rasi"
+@import "../colors/catppuccin-mocha.rasi"
+@import "../base/powermenu-base.rasi"
 
 * {
     accent-color: @purple;
