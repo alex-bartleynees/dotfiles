@@ -15,4 +15,4 @@
     grey: #565f89;
 }
 
-@import "launcher-base.rasi"
+@import "../base/launcher-base.rasi"

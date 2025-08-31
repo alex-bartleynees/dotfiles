@@ -24,7 +24,7 @@ rofi_cmd() {
 	rofi -dmenu \
   -p "$user@$host" \
 		-mesg "Uptime: $uptime" \
-    -theme "${THEME}.rasi"
+    -theme "../themes/powermenu/${THEME}.rasi"
 }
 
 # Pass variables to rofi dmenu

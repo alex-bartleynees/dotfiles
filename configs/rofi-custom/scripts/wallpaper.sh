@@ -10,16 +10,16 @@ WallDir=${2:-~/.config/dotfiles/backgrounds}
 get_theme_file() {
     case "$1" in
         "catppuccin-mocha"|"mocha")
-            echo "fullscreen-preview-catppuccin-mocha.rasi"
+            echo "../themes/fullscreen/fullscreen-preview-catppuccin-mocha.rasi"
             ;;
         "tokyo-night"|"tokyo")
-            echo "fullscreen-preview-tokyo-night.rasi"
+            echo "../themes/fullscreen/fullscreen-preview-tokyo-night.rasi"
             ;;
         "everforest"|"forest")
-            echo "fullscreen-preview-everforest.rasi"
+            echo "../themes/fullscreen/fullscreen-preview-everforest.rasi"
             ;;
         *)
-            echo "fullscreen-preview-catppuccin-mocha.rasi"
+            echo "../themes/fullscreen/fullscreen-preview-catppuccin-mocha.rasi"
             ;;
     esac
 }

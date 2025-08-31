@@ -36,7 +36,7 @@ tokyo_night='Tokyo Night'
 rofi_cmd() {
     rofi -dmenu \
         -p "" \
-        -theme "${ROFI_THEME}.rasi"
+        -theme "../themes/powermenu/${ROFI_THEME}.rasi"
 }
 
 build_theme_options() {
