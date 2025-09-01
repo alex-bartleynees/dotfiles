@@ -36,6 +36,7 @@ tokyo_night='Tokyo Night'
 rofi_cmd() {
     rofi -dmenu \
         -p "" \
+        -mesg "Available themes:" \
         -theme "../themes/powermenu/${ROFI_THEME}.rasi"
 }
 
