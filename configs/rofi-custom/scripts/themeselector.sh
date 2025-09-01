@@ -95,6 +95,12 @@ switch_theme() {
             echo "Setting wallpaper: $wallpaper_path"
             swww img "$wallpaper_path" &
         fi
+        
+        # Reload Sway if running under Sway
+        if [[ "$XDG_CURRENT_DESKTOP" == "sway" ]] && command -v swaymsg >/dev/null 2>&1; then
+            echo "Reloading Sway configuration..."
+            swaymsg reload
+        fi
     else
         echo "Failed to switch to $theme_name theme"
         if command -v notify-send >/dev/null 2>&1; then
