@@ -60,7 +60,8 @@ parse_hyprland() {
             IFS=',' read -ra PARTS <<< "$binding"
             
             if [[ ${#PARTS[@]} -ge 3 ]]; then
-                local keys="${PARTS[0]// }"
+                local modifier="${PARTS[0]// }"
+                local key="${PARTS[1]// }"
                 local action="${PARTS[2]// }"
                 local params=""
                 
@@ -69,6 +70,9 @@ parse_hyprland() {
                     params=$(IFS=','; echo "${PARTS[*]:3}")
                     params="${params# }"
                 fi
+                
+                # Combine modifier and key
+                local keys="$modifier $key"
                 
                 # Replace $mod with actual modifier and format keys properly
                 keys="${keys//\$mod/$mod_key}"
