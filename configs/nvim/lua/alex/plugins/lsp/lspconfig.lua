@@ -82,84 +82,63 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    mason_lspconfig.setup_handlers({
-      -- default handler for installed servers
-      function(server_name)
-        lspconfig[server_name].setup({
-          capabilities = capabilities,
-        })
-      end,
-      ["svelte"] = function()
-        -- configure svelte server
-        lspconfig["svelte"].setup({
-          capabilities = capabilities,
-          on_attach = function(client, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePost", {
-              pattern = { "*.js", "*.ts" },
-              callback = function(ctx)
-                -- Here use ctx.match instead of ctx.file
-                client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-              end,
-            })
-          end,
-        })
-      end,
-      ["csharp_ls"] = function()
-        -- configure cs server
-        lspconfig["csharp_ls"].setup({
-          cmd = { "csharp-ls" },
-          capabilities = capabilities,
-          handlers = {
-            ["textDocument/definition"] = require('csharpls_extended').handler,
-            ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
-          },
-          init_options = {
-            dotnetPath = os.getenv("DOTNET_ROOT") .. "/dotnet"
-          },
-        })
-      end,
-      ["angularls"] = function()
-        -- configure angularls server
-        lspconfig["angularls"].setup({
-          root_dir = util.root_pattern("angular.json", "project.json"),
-          capabilities = capabilities,
-          -- Other configuration options here
-        })
-      end,
-      ["graphql"] = function()
-        -- configure graphql language server
-        lspconfig["graphql"].setup({
-          capabilities = capabilities,
-          filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-        })
-      end,
-      ["emmet_ls"] = function()
-        -- configure emmet language server
-        lspconfig["emmet_ls"].setup({
-          capabilities = capabilities,
-          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-        })
-      end,
-      ["lua_ls"] = function()
-        -- configure lua server (with special settings)
-        lspconfig["lua_ls"].setup({
-          capabilities = capabilities,
-          settings = {
-            Lua = {
-              -- make the language server recognize "vim" global
-              diagnostics = {
-                globals = { "vim" },
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
+    -- Configure LSP servers directly instead of using mason_lspconfig.setup_handlers
+    local servers = {
+      ts_ls = { capabilities = capabilities },
+      html = { capabilities = capabilities },
+      cssls = { capabilities = capabilities },
+      tailwindcss = { capabilities = capabilities },
+      prismals = { capabilities = capabilities },
+      pyright = { capabilities = capabilities },
+      astro = { capabilities = capabilities },
+      svelte = {
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePost", {
+            pattern = { "*.js", "*.ts" },
+            callback = function(ctx)
+              client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+            end,
+          })
+        end,
+      },
+      csharp_ls = {
+        capabilities = capabilities,
+        cmd = { "csharp-ls" },
+        handlers = {
+          ["textDocument/definition"] = require('csharpls_extended').handler,
+          ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+        },
+        init_options = {
+          dotnetPath = os.getenv("DOTNET_ROOT") .. "/dotnet"
+        },
+      },
+      angularls = {
+        capabilities = capabilities,
+        root_dir = util.root_pattern("angular.json", "project.json"),
+      },
+      graphql = {
+        capabilities = capabilities,
+        filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+      },
+      emmet_ls = {
+        capabilities = capabilities,
+        filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+      },
+      lua_ls = {
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+            completion = {
+              callSnippet = "Replace",
             },
           },
-        })
-      end,
-      ["dockerls"] = function()
-      -- configure docker language server
-      lspconfig["dockerls"].setup({
+        },
+      },
+      dockerls = {
         capabilities = capabilities,
         filetypes = { "dockerfile" },
         root_dir = util.root_pattern("Dockerfile", "docker-compose.yml", "docker-compose.yaml"),
@@ -179,34 +158,35 @@ return {
             },
           },
         },
-      })
-    end,  
-      ["helm_ls"] = function()
-        -- configure helm server
-        lspconfig["helm_ls"].setup({
-          logLevel = "info",
-          valuesFiles = {
-            mainValuesFile = "values.yaml",
-            lintOverlayValuesFile = "values.lint.yaml",
-            additionalValuesFilesGlobPattern = "values*.yaml"
-          },
-          yamlls = {
-            enabled = true,
-            enabledForFilesGlob = "*.{yaml,yml}",
-            diagnosticsLimit = 50,
-            showDiagnosticsDirectly = false,
-            path = "yaml-language-server",
-            config = {
-              schemas = {
-                kubernetes = "templates/**",
-              },
-              completion = true,
-              hover = true,
-              -- any other config from https://github.com/redhat-developer/yaml-language-server#language-server-settings
-            }
+      },
+      helm_ls = {
+        capabilities = capabilities,
+        logLevel = "info",
+        valuesFiles = {
+          mainValuesFile = "values.yaml",
+          lintOverlayValuesFile = "values.lint.yaml",
+          additionalValuesFilesGlobPattern = "values*.yaml"
+        },
+        yamlls = {
+          enabled = true,
+          enabledForFilesGlob = "*.{yaml,yml}",
+          diagnosticsLimit = 50,
+          showDiagnosticsDirectly = false,
+          path = "yaml-language-server",
+          config = {
+            schemas = {
+              kubernetes = "templates/**",
+            },
+            completion = true,
+            hover = true,
           }
-        })
-      end,
-    })
+        }
+      },
+    }
+
+    -- Setup all servers
+    for server, config in pairs(servers) do
+      lspconfig[server].setup(config)
+    end
   end,
 }

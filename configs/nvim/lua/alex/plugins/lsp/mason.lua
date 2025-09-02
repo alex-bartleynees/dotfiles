@@ -44,6 +44,10 @@ return {
       },
     })
 
+    -- Import and setup capabilities here to make available to lspconfig
+    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local capabilities = cmp_nvim_lsp.default_capabilities()
+
     mason_tool_installer.setup({
       ensure_installed = {
         "prettier", -- prettier formatter
