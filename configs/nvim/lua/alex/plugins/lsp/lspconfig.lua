@@ -102,17 +102,6 @@ return {
           })
         end,
       },
-      csharp_ls = {
-        capabilities = capabilities,
-        cmd = { "csharp-ls" },
-        handlers = {
-          ["textDocument/definition"] = require('csharpls_extended').handler,
-          ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
-        },
-        init_options = {
-          dotnetPath = os.getenv("DOTNET_ROOT") .. "/dotnet"
-        },
-      },
       angularls = {
         capabilities = capabilities,
         root_dir = util.root_pattern("angular.json", "project.json"),
@@ -187,6 +176,23 @@ return {
     -- Setup all servers
     for server, config in pairs(servers) do
       lspconfig[server].setup(config)
+    end
+
+    -- Conditionally setup csharp_ls only if dotnet is available
+    local dotnet_root = os.getenv("DOTNET_ROOT")
+    if dotnet_root or vim.fn.executable("dotnet") == 1 then
+      local dotnet_path = dotnet_root and (dotnet_root .. "/dotnet") or "dotnet"
+      lspconfig.csharp_ls.setup({
+        capabilities = capabilities,
+        cmd = { "csharp-ls" },
+        handlers = {
+          ["textDocument/definition"] = require('csharpls_extended').handler,
+          ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+        },
+        init_options = {
+          dotnetPath = dotnet_path
+        },
+      })
     end
   end,
 }
