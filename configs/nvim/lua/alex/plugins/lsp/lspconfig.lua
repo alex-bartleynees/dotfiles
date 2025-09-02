@@ -182,17 +182,24 @@ return {
     local dotnet_root = os.getenv("DOTNET_ROOT")
     if dotnet_root or vim.fn.executable("dotnet") == 1 then
       local dotnet_path = dotnet_root and (dotnet_root .. "/dotnet") or "dotnet"
-      lspconfig.csharp_ls.setup({
+      local has_csharpls_extended, csharpls_extended = pcall(require, 'csharpls_extended')
+      
+      local config = {
         capabilities = capabilities,
         cmd = { "csharp-ls" },
-        handlers = {
-          ["textDocument/definition"] = require('csharpls_extended').handler,
-          ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
-        },
         init_options = {
           dotnetPath = dotnet_path
         },
-      })
+      }
+      
+      if has_csharpls_extended then
+        config.handlers = {
+          ["textDocument/definition"] = csharpls_extended.handler,
+          ["textDocument/typeDefinition"] = csharpls_extended.handler,
+        }
+      end
+      
+      lspconfig.csharp_ls.setup(config)
     end
   end,
 }
