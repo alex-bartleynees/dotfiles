@@ -1,0 +1,119 @@
+{
+  "layer": "top", // Waybar at top layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  // "height": 36, // Waybar height (to be removed for auto height)
+  // Archived modules
+  // "custom/gpu", "bluetooth",  "custom/weather", "temperature", "sway/window"
+  // Choose the order of the modules
+  "modules-left": ["clock"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": [
+    "memory",
+    "cpu",
+    "disk",
+    "battery",
+    "backlight",
+    "temperature",
+    "pulseaudio",
+    "network",
+    "tray",
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+    },
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+    },
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+  },
+  "hyprland/window": {
+    "max-length": 50,
+    "separate-outputs": true,
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "🌎 $1",
+      "(.*) - Visual Studio Code": "󰨞 $1",
+      "(.*) - Chromium": "🌐 $1",
+      "(.*) - Brave": "🌐 $1",
+      "(.*) - vim": " $1",
+      "(.*) - nvim": " $1",
+    },
+  },
+  "battery": {
+    "format": "{capacity}% {icon} ",
+    "format-icons": ["", "", "", "", ""],
+  },
+  "tray": {
+    //"icon-size": 11,
+    "spacing": 5,
+  },
+  "clock": {
+    "format": "  {:%H:%M   %e %b}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "today-format": "<b>{}</b>",
+  },
+  "cpu": {
+    "interval": "1",
+    "format": "  {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+    "max-length": 13,
+    "min-length": 13,
+    "on-click": "kitty -e htop --sort-key PERCENT_CPU",
+    "tooltip": false,
+  },
+  "temperature": {
+    //"thermal-zone": 1,
+    "interval": "4",
+    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "critical-threshold": 74,
+    "format-critical": "  {temperatureC}°C",
+    "format": "{icon}  {temperatureC}°C",
+    "format-icons": ["", "", ""],
+    "max-length": 7,
+    "min-length": 7,
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""],
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip-format": "Brightness: {percent}%",
+  },
+  "network": {
+    // "interface": "wlan0", // (Optional) To force the use of this interface,
+    "format-wifi": "    {essid}",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "family": "ipv4",
+    "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\n {bandwidthUpBits}  {bandwidthDownBits}",
+    "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n {bandwidthUpBits}  {bandwidthDownBits}",
+  },
+  "pulseaudio": {
+    "format": "{icon}    {volume:2}%",
+    "format-bluetooth": "{icon}  {volume}%",
+    "format-muted": "MUTE",
+    "format-icons": {
+      "headphones": "",
+      "default": ["", ""],
+    },
+    "scroll-step": 5,
+  },
+}
