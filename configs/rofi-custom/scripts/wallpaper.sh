@@ -18,6 +18,9 @@ get_theme_file() {
         "everforest"|"forest")
             echo "../themes/fullscreen/fullscreen-preview-everforest.rasi"
             ;;
+        "nord")
+            echo "../themes/fullscreen/fullscreen-preview-nord.rasi"
+            ;;
         *)
             echo "../themes/fullscreen/fullscreen-preview-catppuccin-mocha.rasi"
             ;;
