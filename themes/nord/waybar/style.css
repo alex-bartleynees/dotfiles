@@ -170,6 +170,15 @@
   box-shadow: 0 0 8px rgba(94, 129, 172, 0.3);
 }
 
+#workspaces button.active {
+  background: @workspacesfocused;
+  color: #d8dee9;
+  opacity: 1;
+  padding: 0 0.4em;
+  border: 2px solid #5e81ac;
+  box-shadow: 0 0 8px rgba(94, 129, 172, 0.3);
+}
+
 #workspaces button.urgent {
   border-color: #c9545d;
   color: #c9545d;
