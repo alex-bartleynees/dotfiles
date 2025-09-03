@@ -1,0 +1,49 @@
+@theme "fullscreen-preview"
+
+* {
+    bg-col: #2e3440;
+    bg-col-light: #3b4252;
+    border-col: #88c0d0;
+    selected-col: #434c5e;
+    blue: #81a1c1;
+    purple: #b48ead;
+    cyan: #88c0d0;
+    green: #a3be8c;
+    red: #bf616a;
+    orange: #d08770;
+    yellow: #ebcb8b;
+    fg-col: #eceff4;
+    fg-col2: #88c0d0;
+    grey: #4c566a;
+    
+    background-color: @bg-col;
+    text-color: @fg-col;
+}
+
+window {
+    background-color: #2e3440cc;
+}
+
+wrap {
+    background-image: linear-gradient(#eceff40d, #eceff466);
+    border-color: @border-col;
+    children: [ inputbar ];
+}
+
+element {
+    background-image: linear-gradient(#eceff40d, #eceff433);
+    border-color: #88c0d026;
+}
+
+element selected {
+    background-image: linear-gradient(#434c5e40, #434c5e19);
+    border-color: @border-col;
+}
+
+entry {
+    placeholder-color: @grey;
+}
+
+message {
+    enabled: false;
+}

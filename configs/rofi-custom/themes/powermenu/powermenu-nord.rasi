@@ -1,0 +1,6 @@
+@import "../colors/nord.rasi"
+@import "../base/powermenu-base.rasi"
+
+* {
+    accent-color: @cyan;
+}
