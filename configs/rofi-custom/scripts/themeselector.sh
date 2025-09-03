@@ -31,6 +31,7 @@ get_wallpaper_from_theme() {
 # Theme icons
 catppuccin_mocha='Catppuccin Mocha'
 tokyo_night='Tokyo Night'
+nord='Nord'
 
 # Rofi CMD
 rofi_cmd() {
@@ -53,6 +54,9 @@ build_theme_options() {
             "tokyo-night")
                 options+="$tokyo_night\n"
                 ;;
+            "nord")
+              options+="$nord\n"
+              ;;
         esac
     done
     
