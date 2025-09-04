@@ -41,7 +41,6 @@
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
   },
-
   "hyprland/window": {
     "max-length": 50,
     "separate-outputs": true,
@@ -50,11 +49,10 @@
       "(.*) - Visual Studio Code": "󰨞 $1",
       "(.*) - Chromium": "🌐 $1",
       "(.*) - Brave": "🌐 $1",
-      "(.*) - vim": " $1",
-      "(.*) - nvim": " $1",
+      "(.*) - vim": "󰕷 $1",
+      "(.*) - nvim": "󰕷 $1",
     },
   },
-
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "{icon}  {volume}%",
@@ -99,13 +97,11 @@
     "format": "{capacity}% {icon}",
     "format-icons": ["", "", "", "", ""],
   },
-
   "clock": {
     "format": "{:%A %H:%M}",
     "format-alt": "{:%d %B W%V %Y}",
     "tooltip": false,
   },
-
   "tray": {
     "spacing": 10,
   },
