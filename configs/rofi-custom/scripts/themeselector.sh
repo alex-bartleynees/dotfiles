@@ -32,6 +32,7 @@ get_wallpaper_from_theme() {
 catppuccin_mocha='Catppuccin Mocha'
 tokyo_night='Tokyo Night'
 nord='Nord'
+everforest='Everforest'
 
 # Rofi CMD
 rofi_cmd() {
@@ -56,6 +57,9 @@ build_theme_options() {
                 ;;
             "nord")
               options+="$nord\n"
+              ;;
+            "everforest")
+              options+="$everforest\n"
               ;;
         esac
     done
