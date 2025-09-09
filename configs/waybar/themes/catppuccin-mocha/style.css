@@ -12,7 +12,7 @@ window#waybar {
   background-color: #181825;
   transition-property: background-color;
   transition-duration: 0.5s;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 window#waybar.hidden {
@@ -38,6 +38,11 @@ window#waybar.hidden {
 }
 
 #workspaces button.focused {
+  color: @base;
+  background-color: @mauve;
+}
+
+#workspaces button.active {
   color: @base;
   background-color: @mauve;
 }

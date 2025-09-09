@@ -1,0 +1,41 @@
+{
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "active": "󱓻"
+    },
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    },
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+  "hyprland/window": {
+    "max-length": 50,
+    "separate-outputs": true,
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "🌎 $1",
+      "(.*) - Visual Studio Code": "󰨞 $1",
+      "(.*) - Chromium": "🌐 $1",
+      "(.*) - Brave": "🌐 $1",
+      "(.*) - vim": "󰕷 $1",
+      "(.*) - nvim": "󰕷 $1"
+    }
+  }
+}

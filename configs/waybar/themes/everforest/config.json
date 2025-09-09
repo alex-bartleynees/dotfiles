@@ -1,0 +1,17 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "spacing": 4,
+  "modules-center": ["clock"],
+  "modules-right": [
+    "pulseaudio",
+    "memory",
+    "cpu",
+    "disk",
+    "battery",
+    "backlight",
+    "network",
+    "tray"
+  ]
+}
