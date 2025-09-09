@@ -10,8 +10,8 @@ jq -s '.[0] * .[1] * .[2]' \
     base/common.json \
     "wm/${WM}.json" \
     "themes/${THEME}/config.json" \
-    > "build/config.json"
+    > "${BUILD_DIR}/config.json"
 
-cp "themes/${THEME}/style.css" "build/style.css"
+cp "themes/${THEME}/style.css" "${BUILD_DIR}/style.css"
 
 echo "Built config for ${WM} with ${THEME} theme"
