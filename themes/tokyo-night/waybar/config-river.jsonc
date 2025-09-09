@@ -2,7 +2,7 @@
   "layer": "bottom",
   "position": "bottom",
   "margin-bottom": 0,
-  "modules-left": ["river/tags", "river/window"],
+  "modules-left": ["river/tags"],
   "modules-right": [
     "pulseaudio",
     "memory",
@@ -13,16 +13,11 @@
     "network",
     "clock",
     "tray",
-    "custom/power"
+    "custom/power",
   ],
   "river/tags": {
     "num-tags": 9,
     "tag-labels": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-  },
-  "river/window": {
-    "format": "{title}",
-    "max-length": 50,
-    "tooltip": false,
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -102,16 +97,16 @@
     "tooltip": true,
     "interval": 300,
     "exec": "wttr.in/Cologne?0&T&Q&format=1",
-    "on-click": "xdg-open https://wttr.in/Cologne"
+    "on-click": "xdg-open https://wttr.in/Cologne",
   },
   "custom/separator": {
     "format": "|",
     "interval": "once",
-    "tooltip": false
+    "tooltip": false,
   },
   "custom/power": {
     "format": "⏻",
     "tooltip": false,
-    "on-click": "exec $HOME/.local/bin/powermenu powermenu-tokyo-night"
-  }
+    "on-click": "exec $HOME/.local/bin/powermenu powermenu-tokyo-night",
+  },
 }
