@@ -13,7 +13,7 @@
     "network",
     "clock",
     "tray",
-    "custom/power",
+    "custom/power"
   ],
   "river/tags": {
     "num-tags": 9,
@@ -102,17 +102,16 @@
     "tooltip": true,
     "interval": 300,
     "exec": "wttr.in/Cologne?0&T&Q&format=1",
-    "return-type": "json",
-    "on-click": "xdg-open https://wttr.in/Cologne",
+    "on-click": "xdg-open https://wttr.in/Cologne"
   },
   "custom/separator": {
     "format": "|",
     "interval": "once",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/power": {
     "format": "⏻",
     "tooltip": false,
-    "on-click": "exec $HOME/.local/bin/powermenu powermenu-tokyo-night",
-  },
+    "on-click": "exec $HOME/.local/bin/powermenu powermenu-tokyo-night"
+  }
 }
