@@ -13,5 +13,10 @@
     "backlight",
     "network",
     "tray"
-  ]
+  ],
+  "hyprland/workspaces": {
+    "format-icons": {
+      "active": "󱓻"
+    }
+  }
 }
