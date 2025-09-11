@@ -109,6 +109,12 @@ switch_theme() {
         if [[ "$XDG_CURRENT_DESKTOP" == "sway" ]] && command -v swaymsg >/dev/null 2>&1; then
             echo "Reloading Sway configuration..."
             swaymsg reload
+        fi      
+
+        # Reload River if running under river
+        if [[ "$XDG_CURRENT_DESKTOP" == "river" ]]; then
+            echo "Reloading River configuration..."
+            exec $HOME/.config/river/init
         fi
     else
         echo "Failed to switch to $theme_name theme"
