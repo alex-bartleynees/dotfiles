@@ -44,10 +44,12 @@ window#waybar.hidden {
   opacity: 0.5;
 }
 
+#tags,
 #workspaces {
   background-color: transparent;
 }
 
+#tags button,
 #workspaces button {
   all: initial;
   /* Remove GTK theme values (waybar #1351) */
@@ -62,16 +64,19 @@ window#waybar.hidden {
   color: @text;
 }
 
+#tags button.focused,
 #workspaces button.focused {
   color: @base;
   background-color: @mauve;
 }
 
+#tags button.active,
 #workspaces button.active {
   color: @base;
   background-color: @mauve;
 }
 
+#tags button:hover,
 #workspaces button:hover {
   box-shadow: inherit;
   text-shadow: inherit;
@@ -79,6 +84,7 @@ window#waybar.hidden {
   background-color: @lavender;
 }
 
+#tags button.urgent,
 #workspaces button.urgent {
   background-color: @red;
 }

@@ -20,6 +20,7 @@
   margin-right: 8px;
 }
 
+#tags button,
 #workspaces button {
   all: initial;
   padding: 0 6px;
@@ -27,6 +28,7 @@
   min-width: 9px;
 }
 
+#tags button.empty,
 #workspaces button.empty {
   opacity: 0.5;
 }

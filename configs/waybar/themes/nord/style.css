@@ -147,11 +147,13 @@
 
 /* Workspaces stuff */
 
+#tags,
 #workspaces {
   /*   color: #D8DEE9;
     margin-right: 10px;*/
 }
 
+#tags button,
 #workspaces button {
   font-weight: bold; /* Somewhy the bar-wide setting is ignored*/
   padding: 0;
@@ -161,6 +163,7 @@
   font-size: 1em;
 }
 
+#tags button.focused,
 #workspaces button.focused {
   background: @workspacesfocused;
   color: #d8dee9;
@@ -170,6 +173,7 @@
   box-shadow: 0 0 8px rgba(94, 129, 172, 0.3);
 }
 
+#tags button.active,
 #workspaces button.active {
   background: @workspacesfocused;
   color: #d8dee9;
@@ -179,6 +183,7 @@
   box-shadow: 0 0 8px rgba(94, 129, 172, 0.3);
 }
 
+#tags button.urgent,
 #workspaces button.urgent {
   border-color: #c9545d;
   color: #c9545d;
