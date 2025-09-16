@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Rofi script to show keybindings from Sway and Hyprland configurations
+# Rofi script to show keybindings from Sway, Hyprland, and River configurations
 # Automatically detects current desktop environment via XDG_CURRENT_DESKTOP
 
 set -euo pipefail
@@ -8,6 +8,7 @@ set -euo pipefail
 # Configuration paths
 HYPR_CONFIG="$HOME/.config/hypr/hyprland.conf"
 SWAY_CONFIG="$HOME/.config/sway/config"
+RIVER_CONFIG="$HOME/.config/river/init"
 
 # Colors for formatting
 RESET='\033[0m'
@@ -150,6 +151,92 @@ parse_sway() {
     done < "$config_file"
 }
 
+# Function to parse River keybindings
+parse_river() {
+    local config_file="$1"
+    
+    if [[ ! -f "$config_file" ]]; then
+        echo "River config not found: $config_file" >&2
+        return 1
+    fi
+    
+    # Parse the Nix-style configuration
+    local in_map_section=false
+    local in_mode_section=""
+    local brace_depth=0
+    
+    while IFS= read -r line; do
+        # Skip comments and empty lines
+        [[ $line =~ ^[[:space:]]*# ]] && continue
+        [[ -z "${line// }" ]] && continue
+        
+        # Track brace depth for nested structures
+        local open_braces=$(echo "$line" | grep -o '{' | wc -l)
+        local close_braces=$(echo "$line" | grep -o '}' | wc -l)
+        brace_depth=$((brace_depth + open_braces - close_braces))
+        
+        # Check if we're entering the map section
+        if [[ $line =~ map[[:space:]]*=[[:space:]]*\{ ]]; then
+            in_map_section=true
+            continue
+        fi
+        
+        # Check if we're in a mode section (normal, locked, passthrough)
+        if $in_map_section && [[ $line =~ ^[[:space:]]*(normal|locked|passthrough)[[:space:]]*=[[:space:]]*\{ ]]; then
+            in_mode_section="${BASH_REMATCH[1]}"
+            continue
+        fi
+        
+        # Reset mode when we exit a section
+        if $in_map_section && [[ $line =~ ^[[:space:]]*\}[[:space:]]*;?[[:space:]]*$ ]] && [[ $brace_depth -le 1 ]]; then
+            in_mode_section=""
+        fi
+        
+        # Exit map section when we hit the closing brace
+        if $in_map_section && [[ $brace_depth -eq 0 ]]; then
+            in_map_section=false
+            in_mode_section=""
+        fi
+        
+        # Parse keybinding lines within a mode section
+        if $in_map_section && [[ -n "$in_mode_section" ]] && [[ $line =~ ^[[:space:]]*\"([^\"]+)\"[[:space:]]*=[[:space:]]*\"([^\"]+)\" ]]; then
+            local keys="${BASH_REMATCH[1]}"
+            local action="${BASH_REMATCH[2]}"
+            
+            # Clean up and format keys
+            keys="${keys//+/ + }"
+            keys="${keys//Alt/Alt}"
+            keys="${keys//Shift/+Shift}"
+            keys="${keys//Control/+Ctrl}"
+            keys="${keys//Super/+Super}"
+            
+            # Add mode prefix for non-normal modes
+            local prefix=""
+            case "$in_mode_section" in
+                "locked")
+                    prefix="[Locked] "
+                    ;;
+                "passthrough")
+                    prefix="[Passthrough] "
+                    ;;
+            esac
+            
+            # Clean up action (remove quotes and escape sequences)
+            action="${action//\\\"/\"}"
+            action="${action//\\n/ }"
+            
+            printf "%s → %s%s\n" "$keys" "$prefix" "$action"
+        fi
+        
+        # Also parse map-pointer section for mouse bindings
+        if [[ $line =~ map-pointer[[:space:]]*=[[:space:]]*\{ ]]; then
+            in_map_section=true
+            continue
+        fi
+        
+    done < "$config_file"
+}
+
 # Function to get current desktop environment
 get_current_desktop() {
     # Check XDG_CURRENT_DESKTOP first
@@ -163,6 +250,8 @@ get_current_desktop() {
         echo "hyprland"
     elif pgrep -x "sway" > /dev/null; then
         echo "sway"
+    elif pgrep -x "river" > /dev/null; then
+        echo "river"
     else
         echo "unknown"
     fi
@@ -184,6 +273,10 @@ show_in_rofi() {
             config_file="$SWAY_CONFIG" 
             title="Sway Keybindings"
             ;;
+        river*)
+            config_file="$RIVER_CONFIG"
+            title="River Keybindings"
+            ;;
         *)
             echo "Unsupported desktop environment: $desktop" >&2
             exit 1
@@ -199,6 +292,9 @@ show_in_rofi() {
             ;;
         sway|i3*)
             parse_sway "$config_file" | sort > "$temp_file"
+            ;;
+        river*)
+            parse_river "$config_file" | sort > "$temp_file"
             ;;
     esac
     
