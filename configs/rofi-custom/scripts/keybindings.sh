@@ -188,7 +188,7 @@ parse_river() {
         fi
         
         # Reset mode when we exit a section
-        if $in_map_section && [[ $line =~ ^[[:space:]]*\}[[:space:]]*;?[[:space:]]*$ ]] && [[ $brace_depth -le 1 ]]; then
+        if $in_map_section && [[ $line =~ ^[[:space:]]*\}[[:space:]]*(;[[:space:]]*)?$ ]] && [[ $brace_depth -le 1 ]]; then
             in_mode_section=""
         fi
         
