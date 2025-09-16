@@ -160,59 +160,36 @@ parse_river() {
         return 1
     fi
     
-    # Parse the Nix-style configuration
-    local in_map_section=false
-    local in_mode_section=""
-    local brace_depth=0
-    
     while IFS= read -r line; do
         # Skip comments and empty lines
         [[ $line =~ ^[[:space:]]*# ]] && continue
         [[ -z "${line// }" ]] && continue
         
-        # Track brace depth for nested structures
-        local open_braces=$(echo "$line" | grep -o '{' | wc -l)
-        local close_braces=$(echo "$line" | grep -o '}' | wc -l)
-        brace_depth=$((brace_depth + open_braces - close_braces))
-        
-        # Check if we're entering the map section
-        if [[ $line =~ map[[:space:]]*=[[:space:]]*\{ ]]; then
-            in_map_section=true
-            continue
-        fi
-        
-        # Check if we're in a mode section (normal, locked, passthrough)
-        if $in_map_section && [[ $line =~ ^[[:space:]]*(normal|locked|passthrough)[[:space:]]*=[[:space:]]*\{ ]]; then
-            in_mode_section="${BASH_REMATCH[1]}"
-            continue
-        fi
-        
-        # Reset mode when we exit a section
-        if $in_map_section && [[ $line =~ ^[[:space:]]*\}[[:space:]]*(;[[:space:]]*)?$ ]] && [[ $brace_depth -le 1 ]]; then
-            in_mode_section=""
-        fi
-        
-        # Exit map section when we hit the closing brace
-        if $in_map_section && [[ $brace_depth -eq 0 ]]; then
-            in_map_section=false
-            in_mode_section=""
-        fi
-        
-        # Parse keybinding lines within a mode section
-        if $in_map_section && [[ -n "$in_mode_section" ]] && [[ $line =~ ^[[:space:]]*\"([^\"]+)\"[[:space:]]*=[[:space:]]*\"([^\"]+)\" ]]; then
-            local keys="${BASH_REMATCH[1]}"
-            local action="${BASH_REMATCH[2]}"
+        # Parse riverctl map commands: riverctl map MODE MODIFIER KEY ACTION [PARAMS...]
+        if [[ $line =~ ^riverctl[[:space:]]+map[[:space:]]+([^[:space:]]+)[[:space:]]+([^[:space:]]+)[[:space:]]+([^[:space:]]+)[[:space:]]+(.+)$ ]]; then
+            local mode="${BASH_REMATCH[1]}"
+            local modifier="${BASH_REMATCH[2]}"
+            local key="${BASH_REMATCH[3]}"
+            local action_and_params="${BASH_REMATCH[4]}"
             
-            # Clean up and format keys
-            keys="${keys//+/ + }"
-            keys="${keys//Alt/Alt}"
-            keys="${keys//Shift/+Shift}"
-            keys="${keys//Control/+Ctrl}"
-            keys="${keys//Super/+Super}"
+            # Format the key combination
+            local keys=""
+            if [[ "$modifier" == "None" ]]; then
+                keys="$key"
+            else
+                # Handle compound modifiers like Alt+Shift
+                keys="$modifier"
+                keys="${keys//+/ + }"
+                keys="${keys//Alt/Alt}"
+                keys="${keys//Shift/+Shift}"
+                keys="${keys//Control/+Ctrl}"
+                keys="${keys//Super/+Super}"
+                keys="$keys $key"
+            fi
             
             # Add mode prefix for non-normal modes
             local prefix=""
-            case "$in_mode_section" in
+            case "$mode" in
                 "locked")
                     prefix="[Locked] "
                     ;;
@@ -221,17 +198,47 @@ parse_river() {
                     ;;
             esac
             
-            # Clean up action (remove quotes and escape sequences)
-            action="${action//\\\"/\"}"
-            action="${action//\\n/ }"
+            # Clean up action and params (handle quoted strings)
+            local action="$action_and_params"
+            # Remove outer quotes if present
+            if [[ $action =~ ^\'(.*)\'$ ]] || [[ $action =~ ^\"(.*)\"$ ]]; then
+                action="${BASH_REMATCH[1]}"
+            fi
             
             printf "%s → %s%s\n" "$keys" "$prefix" "$action"
         fi
         
-        # Also parse map-pointer section for mouse bindings
-        if [[ $line =~ map-pointer[[:space:]]*=[[:space:]]*\{ ]]; then
-            in_map_section=true
-            continue
+        # Parse riverctl map-pointer commands: riverctl map-pointer MODE MODIFIER BUTTON ACTION
+        if [[ $line =~ ^riverctl[[:space:]]+map-pointer[[:space:]]+([^[:space:]]+)[[:space:]]+([^[:space:]]+)[[:space:]]+([^[:space:]]+)[[:space:]]+(.+)$ ]]; then
+            local mode="${BASH_REMATCH[1]}"
+            local modifier="${BASH_REMATCH[2]}"
+            local button="${BASH_REMATCH[3]}"
+            local action="${BASH_REMATCH[4]}"
+            
+            # Format the button combination
+            local keys=""
+            if [[ "$modifier" == "None" ]]; then
+                keys="$button"
+            else
+                keys="$modifier $button"
+                keys="${keys//Alt/Alt}"
+                keys="${keys//Shift/+Shift}"
+                keys="${keys//Control/+Ctrl}"
+                keys="${keys//Super/+Super}"
+            fi
+            
+            # Add mode prefix and mouse indicator
+            local prefix="[Mouse] "
+            case "$mode" in
+                "locked")
+                    prefix="[Mouse+Locked] "
+                    ;;
+                "passthrough")
+                    prefix="[Mouse+Passthrough] "
+                    ;;
+            esac
+            
+            printf "%s → %s%s\n" "$keys" "$prefix" "$action"
         fi
         
     done < "$config_file"
