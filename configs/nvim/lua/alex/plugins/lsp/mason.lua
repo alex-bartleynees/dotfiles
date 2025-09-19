@@ -35,12 +35,11 @@ return {
         "lua_ls",
         "graphql",
         "emmet_ls",
-        "prismals",
         "angularls",
         "astro",
         "helm_ls",
         "dockerls",
-        "nil",
+        "nil_ls",
       },
     })
 
@@ -53,6 +52,7 @@ return {
         "prettier", -- prettier formatter
         "eslint_d", -- js linter
         "nixfmt", -- nix formatter
+        "black", -- python formatter
       },
     })
   end,
