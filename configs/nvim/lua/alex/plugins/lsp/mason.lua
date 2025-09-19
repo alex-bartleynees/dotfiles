@@ -36,11 +36,12 @@ return {
         "graphql",
         "emmet_ls",
         "prismals",
-        "pyright",
         "angularls",
         "astro",
         "helm_ls",
-        "dockerls"
+        "dockerls",
+        "nil",
+        "nixfmt"
       },
     })
 
