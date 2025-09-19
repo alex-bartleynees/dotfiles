@@ -41,7 +41,6 @@ return {
         "helm_ls",
         "dockerls",
         "nil",
-        "nixfmt"
       },
     })
 
@@ -53,6 +52,7 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "eslint_d", -- js linter
+        "nixfmt", -- nix formatter
       },
     })
   end,
