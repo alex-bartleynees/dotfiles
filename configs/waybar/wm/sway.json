@@ -2,7 +2,7 @@
   "modules-left": ["sway/workspaces"],
   "sway/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true,
+    "all-outputs": false,
     "format": "{icon}",
     "format-icons": {
       "1": "1",
