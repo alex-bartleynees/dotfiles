@@ -1,0 +1,9 @@
+{
+  "modules-left": ["ext/workspaces"],
+  "ext/workspaces": {
+    "format": "{icon}",
+    "ignore-hidden": true,
+    "on-click": "activate",
+    "sort-by-id": true
+  }
+}
