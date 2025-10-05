@@ -18,5 +18,10 @@
     "format-icons": {
       "active": "󱓻"
     }
+  },
+  "niri/workspaces": {
+    "format-icons": {
+      "active": "󱓻"
+    }
   }
 }
