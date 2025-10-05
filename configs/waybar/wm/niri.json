@@ -1,0 +1,30 @@
+{
+  "modules-left": ["niri/workspaces", "niri/window"],
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+    }
+  },
+  "niri/window": {
+    "max-length": 50,
+    "separate-outputs": true,
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "🌎 $1",
+      "(.*) - Visual Studio Code": "󰨞 $1",
+      "(.*) - Chromium": "🌐 $1",
+      "(.*) - Brave": "🌐 $1",
+      "(.*) - vim": "󰕷 $1",
+      "(.*) - nvim": "󰕷 $1"
+    }
+  }
+}
