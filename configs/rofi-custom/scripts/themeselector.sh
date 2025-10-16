@@ -8,7 +8,7 @@
 ROFI_THEME="${1:-powermenu}"
 
 # NixOS theme specializations directory
-THEMES_DIR="/home/alexbn/.config/nix-config/themes"
+THEMES_DIR="$HOME/.config/nix-config/themes"
 
 # Get available themes dynamically from nix-config
 get_available_themes() {
