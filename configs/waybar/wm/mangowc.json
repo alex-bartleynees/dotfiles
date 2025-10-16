@@ -1,9 +1,15 @@
 {
-  "modules-left": ["ext/workspaces"],
+  "modules-left": ["ext/workspaces", "dwl/window#title", "dwl/window#layout"],
   "ext/workspaces": {
     "format": "{icon}",
     "ignore-hidden": true,
     "on-click": "activate",
     "sort-by-id": true
+  },
+  "dwl/window#layout": {
+    "format": "[{layout}]"
+  },
+  "dwl/window#title": {
+    "format": "{title}"
   }
 }
