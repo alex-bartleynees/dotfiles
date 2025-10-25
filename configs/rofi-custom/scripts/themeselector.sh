@@ -104,7 +104,19 @@ switch_theme() {
             echo "Setting wallpaper: $wallpaper_path"
             swww img "$wallpaper_path" &
         fi
-        
+
+        # Reload Mango config if running under Mango
+        if [[ "$XDG_CURRENT_DESKTOP" == "mango" ]] || [[ "$XDG_SESSION_DESKTOP" == "mango" ]]; then
+            echo "Reloading Mango configuration..."
+            if command -v mmsg >/dev/null 2>&1; then
+                mmsg -d reload_config
+            fi
+
+            # Restart waybar-mango
+            echo "Restarting waybar-mango..."
+            systemctl --user restart waybar-mango
+        fi
+
         # Reload Sway if running under Sway
         if [[ "$XDG_CURRENT_DESKTOP" == "sway" ]] && command -v swaymsg >/dev/null 2>&1; then
             echo "Reloading Sway configuration..."
