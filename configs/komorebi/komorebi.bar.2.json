@@ -22,12 +22,18 @@
     "rounding": 5,
     "transparency_alpha": 255
   },
+  "height": 40,
   "left_widgets": [
     {
       "Komorebi": {
         "workspaces": {
           "enable": true,
           "hide_empty_workspaces": true
+        },
+        "workspace_layer": {
+          "enable": true,
+          "display": "IconAndText",
+          "show_when_tiling": true
         },
         "layout": {
           "enable": true
