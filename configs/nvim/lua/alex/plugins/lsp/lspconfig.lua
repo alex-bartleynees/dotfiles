@@ -10,13 +10,6 @@ return {
     inlay_hints = { enabled = true },
   },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
-    local util = require('lspconfig.util')
-
-    -- import mason_lspconfig plugin
-    local mason_lspconfig = require("mason-lspconfig")
-
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -111,7 +104,7 @@ return {
       },
       angularls = {
         capabilities = capabilities,
-        root_dir = util.root_pattern("angular.json", "project.json"),
+        root_markers = { "angular.json", "project.json" },
       },
       graphql = {
         capabilities = capabilities,
@@ -137,7 +130,7 @@ return {
       dockerls = {
         capabilities = capabilities,
         filetypes = { "dockerfile" },
-        root_dir = util.root_pattern("Dockerfile", "docker-compose.yml", "docker-compose.yaml"),
+        root_markers = { "Dockerfile", "docker-compose.yml", "docker-compose.yaml" },
         settings = {
           docker = {
             languageserver = {
@@ -180,9 +173,9 @@ return {
       },
     }
 
-    -- Setup all servers
+    -- Setup all servers using the new vim.lsp.config API
     for server, config in pairs(servers) do
-      lspconfig[server].setup(config)
+      vim.lsp.config(server, config)
     end
 
     -- Conditionally setup csharp_ls only if dotnet is available
@@ -190,7 +183,7 @@ return {
     if dotnet_root or vim.fn.executable("dotnet") == 1 then
       local dotnet_path = dotnet_root and (dotnet_root .. "/dotnet") or "dotnet"
       local has_csharpls_extended, csharpls_extended = pcall(require, 'csharpls_extended')
-      
+
       local config = {
         capabilities = capabilities,
         cmd = { "csharp-ls" },
@@ -198,15 +191,15 @@ return {
           dotnetPath = dotnet_path
         },
       }
-      
+
       if has_csharpls_extended then
         config.handlers = {
           ["textDocument/definition"] = csharpls_extended.handler,
           ["textDocument/typeDefinition"] = csharpls_extended.handler,
         }
       end
-      
-      lspconfig.csharp_ls.setup(config)
+
+      vim.lsp.config("csharp_ls", config)
     end
   end,
 }
