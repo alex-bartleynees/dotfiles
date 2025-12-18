@@ -90,7 +90,10 @@ return {
       tailwindcss = { capabilities = capabilities },
       prismals = { capabilities = capabilities },
       pyright = { capabilities = capabilities },
-      astro = { capabilities = capabilities },
+      astro = {
+        capabilities = capabilities,
+        cmd = { "astro-ls", "--stdio" },
+      },
       svelte = {
         capabilities = capabilities,
         on_attach = function(client, bufnr)
@@ -180,8 +183,9 @@ return {
 
     -- Setup csharp_ls (dotnet and csharp-ls are loaded via direnv)
     local dotnet_root = os.getenv("DOTNET_ROOT")
-    local dotnet_path = dotnet_root and (dotnet_root .. "/dotnet") or "dotnet"
-    local has_csharpls_extended, csharpls_extended = pcall(require, 'csharpls_extended')
+    if dotnet_root or vim.fn.executable("dotnet") == 1 then
+      local dotnet_path = dotnet_root and (dotnet_root .. "/bin/dotnet") or "dotnet"
+      local has_csharpls_extended, csharpls_extended = pcall(require, 'csharpls_extended')
 
     local csharp_config = {
       capabilities = capabilities,
