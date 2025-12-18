@@ -203,5 +203,6 @@ return {
     end
 
     vim.lsp.config("csharp_ls", csharp_config)
+    end
   end,
 }
