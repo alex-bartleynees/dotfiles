@@ -1,0 +1,6 @@
+@import "../colors/kanagawa.rasi"
+@import "../base/powermenu-base.rasi"
+
+* {
+    accent-color: @purple;
+}

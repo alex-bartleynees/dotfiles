@@ -1,0 +1,6 @@
+@import "../colors/oxocarbon.rasi"
+@import "../base/powermenu-base.rasi"
+
+* {
+    accent-color: @green;
+}

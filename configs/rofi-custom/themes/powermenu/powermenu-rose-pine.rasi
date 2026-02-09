@@ -1,0 +1,6 @@
+@import "../colors/rose-pine.rasi"
+@import "../base/powermenu-base.rasi"
+
+* {
+    accent-color: @purple;
+}
