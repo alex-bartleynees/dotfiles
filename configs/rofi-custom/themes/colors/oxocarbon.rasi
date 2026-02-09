@@ -1,0 +1,18 @@
+* {
+    bg-col: #161616;
+    bg-col-light: #262626;
+    border-col: #42be65;
+    selected-col: #262626;
+    blue: #78a9ff;
+    purple: #be95ff;
+    cyan: #3ddbd9;
+    green: #42be65;
+    red: #ee5396;
+    orange: #ff7eb6;
+    yellow: #fddc69;
+    fg-col: #f2f4f8;
+    fg-col2: #42be65;
+    grey: #525252;
+}
+
+@import "../base/launcher-base.rasi"

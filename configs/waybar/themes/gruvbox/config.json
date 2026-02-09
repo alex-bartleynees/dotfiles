@@ -1,0 +1,42 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "margin-bottom": 0,
+  "modules-right": [
+    "pulseaudio",
+    "memory",
+    "cpu",
+    "disk",
+    "battery",
+    "backlight",
+    "network",
+    "clock",
+    "tray"
+  ],
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%A, %B %d, %Y (%R)}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#fabd2f'><b>{}</b></span>",
+        "days": "<span color='#ebdbb2'><b>{}</b></span>",
+        "weeks": "<span color='#8ec07c'><b>W{}</b></span>",
+        "weekdays": "<span color='#fe8019'><b>{}</b></span>",
+        "today": "<span color='#fb4934'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  }
+}
