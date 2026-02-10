@@ -33,6 +33,10 @@ catppuccin_mocha='Catppuccin Mocha'
 tokyo_night='Tokyo Night'
 nord='Nord'
 everforest='Everforest'
+gruvbox='Gruvbox'
+kanagawa='Kanagawa'
+oxocarbon='Oxocarbon'
+rose_pine='Rose Pine'
 
 # Rofi CMD
 rofi_cmd() {
@@ -60,6 +64,18 @@ build_theme_options() {
               ;;
             "everforest")
               options+="$everforest\n"
+              ;;
+            "gruvbox")
+              options+="$gruvbox\n"
+              ;;
+            "kanagawa")
+              options+="$kanagawa\n"
+              ;;
+            "oxocarbon")
+              options+="$oxocarbon\n"
+              ;;
+            "rose-pine")
+              options+="$rose_pine\n"
               ;;
         esac
     done
