@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Usage: wallpaper.sh [theme] [wallpaper_dir]
-# Themes: catppuccin-mocha, tokyo-night, everforest
+# Themes: catppuccin-mocha, tokyo-night, everforest, nord, gruvbox, kanagawa, oxocarbon, rose-pine
 
 THEME=${1:-catppuccin-mocha}
 WallDir=${2:-~/.config/dotfiles/backgrounds}
@@ -20,6 +20,18 @@ get_theme_file() {
             ;;
         "nord")
             echo "../themes/fullscreen/fullscreen-preview-nord.rasi"
+            ;;
+        "gruvbox")
+            echo "../themes/fullscreen/fullscreen-preview-gruvbox.rasi"
+            ;;
+        "kanagawa")
+            echo "../themes/fullscreen/fullscreen-preview-kanagawa.rasi"
+            ;;
+        "oxocarbon")
+            echo "../themes/fullscreen/fullscreen-preview-oxocarbon.rasi"
+            ;;
+        "rose-pine"|"rose")
+            echo "../themes/fullscreen/fullscreen-preview-rose-pine.rasi"
             ;;
         *)
             echo "../themes/fullscreen/fullscreen-preview-catppuccin-mocha.rasi"
