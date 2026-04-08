@@ -43,7 +43,7 @@ THEME_FILE=$(get_theme_file "$THEME")
 
 PREVIEW=true \
 rofi -no-config -theme "$THEME_FILE" \
-    -show filebrowser -filebrowser-command 'swww img' \
+    -show filebrowser -filebrowser-command 'awww img' \
     -filebrowser-directory "$WallDir" \
     -filebrowser-sorting-method mtime \
     -selected-row 1 >/dev/null

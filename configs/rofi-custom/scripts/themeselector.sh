@@ -115,10 +115,10 @@ switch_theme() {
             notify-send "Theme Switched" "Successfully switched to $theme_name theme"
         fi
         
-        # Set wallpaper with swww if available and wallpaper path was found
-        if [[ -n "$wallpaper_path" ]] && command -v swww >/dev/null 2>&1; then
+        # Set wallpaper with awww if available and wallpaper path was found
+        if [[ -n "$wallpaper_path" ]] && command -v awww >/dev/null 2>&1; then
             echo "Setting wallpaper: $wallpaper_path"
-            swww img "$wallpaper_path" &
+            awww img "$wallpaper_path" &
         fi
 
         # Reload Mango config if running under Mango
