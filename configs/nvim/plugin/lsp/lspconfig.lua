@@ -7,7 +7,7 @@ require("lazyload").on_vim_enter(function()
   })
 
   require("neodev").setup({})
-  require("nvim-lsp-file-operations").setup()
+  require("lsp-file-operations").setup()
 
   local cmp_nvim_lsp = require("cmp_nvim_lsp")
   local capabilities = cmp_nvim_lsp.default_capabilities()
