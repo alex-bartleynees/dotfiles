@@ -1,0 +1,10 @@
+require("lazyload").on_vim_enter(function()
+  vim.pack.add({
+    { src = "https://github.com/folke/which-key.nvim" },
+  })
+
+  vim.o.timeout = true
+  vim.o.timeoutlen = 500
+
+  require("which-key").setup({})
+end)

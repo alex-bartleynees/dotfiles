@@ -52,7 +52,7 @@ DOTFILES=(
     ["sway/colorscheme"]="/home/alexbn/.config/sway"
     ["rofi/config.rasi"]="/home/alexbn/.config/rofi/"
     ["rofi"/theme.rasi]="/home/alexbn/.config/rofi/"
-    ["nvim/colorscheme.lua"]="/home/alexbn/.config/nvim/lua/alex/plugins/"
+    ["nvim/colorscheme.lua"]="/home/alexbn/.config/nvim/plugin/"
 )
 
 # Create symbolic links for each entry in the DOTFILES array

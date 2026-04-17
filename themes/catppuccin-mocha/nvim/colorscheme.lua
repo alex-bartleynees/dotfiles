@@ -1,13 +1,5 @@
-return {
-  {
-    "catppuccin/nvim",
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require("catppuccin").setup({
-        flavor = "mocha",
-      })
-      -- load the colorscheme here
-      vim.cmd([[colorscheme catppuccin]])
-    end,
-  },
-}
+vim.pack.add({
+  { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+})
+require("catppuccin").setup({ flavour = "mocha" })
+vim.cmd([[colorscheme catppuccin]])
