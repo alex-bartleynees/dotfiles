@@ -96,6 +96,17 @@ require("lazyload").on_vim_enter(function()
       capabilities = capabilities,
       root_markers = { "angular.json", "project.json" },
       filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
+      cmd = {
+        "ngserver",
+        "--stdio",
+        "--tsProbeLocations", "",
+        "--ngProbeLocations", "",
+      },
+      on_new_config = function(new_config, root_dir)
+        local node_modules = (root_dir or vim.fn.getcwd()) .. "/node_modules"
+        new_config.cmd[4] = node_modules
+        new_config.cmd[6] = node_modules
+      end,
     },
     graphql = {
       capabilities = capabilities,
