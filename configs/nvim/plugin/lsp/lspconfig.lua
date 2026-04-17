@@ -163,13 +163,12 @@ require("lazyload").on_vim_enter(function()
     vim.lsp.config(server, config)
   end
 
-  -- angularls uses on_new_config which only fires via nvim-lspconfig's setup, not vim.lsp.config
-  require("lspconfig").angularls.setup({
+  vim.lsp.config("angularls", {
     capabilities = capabilities,
     filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
-    on_new_config = function(new_config, root_dir)
-      local node_modules = (root_dir or vim.fn.getcwd()) .. "/node_modules"
-      new_config.cmd = {
+    cmd = function()
+      local node_modules = vim.fn.getcwd() .. "/node_modules"
+      return {
         "ngserver",
         "--stdio",
         "--tsProbeLocations", node_modules,
@@ -182,6 +181,7 @@ require("lazyload").on_vim_enter(function()
     vim.lsp.config("roslyn", {
       capabilities = capabilities,
       cmd = { "Microsoft.CodeAnalysis.LanguageServer", "--stdio" },
+      root_markers = { "*.sln", "*.csproj" },
     })
     vim.lsp.enable("roslyn")
   end
