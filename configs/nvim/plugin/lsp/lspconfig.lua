@@ -168,27 +168,10 @@ require("lazyload").on_vim_enter(function()
     vim.lsp.config(server, config)
   end
 
-  local dotnet_root = os.getenv("DOTNET_ROOT")
-  if dotnet_root or vim.fn.executable("dotnet") == 1 then
-    local dotnet_path = dotnet_root and (dotnet_root .. "/bin/dotnet") or "dotnet"
-    local has_csharpls_extended, csharpls_extended = pcall(require, "csharpls_extended")
-
-    local csharp_config = {
+  if os.getenv("DOTNET_ROOT") or vim.fn.executable("dotnet") == 1 then
+    vim.lsp.config("roslyn", {
       capabilities = capabilities,
-      cmd = { "csharp-ls" },
-      init_options = {
-        dotnetPath = dotnet_path,
-      },
-    }
-
-    if has_csharpls_extended then
-      csharp_config.handlers = {
-        ["textDocument/definition"] = csharpls_extended.handler,
-        ["textDocument/typeDefinition"] = csharpls_extended.handler,
-      }
-    end
-
-    vim.lsp.config("csharp_ls", csharp_config)
-    vim.lsp.enable("csharp_ls")
+    })
+    vim.lsp.enable("roslyn")
   end
 end)

@@ -22,9 +22,6 @@ require("lazyload").on_vim_enter(function()
     python = { "isort", "black" },
   }
 
-  if vim.fn.executable("dotnet") == 1 then
-    formatters_by_ft.cs = { "csharpier" }
-  end
 
   require("conform").setup({
     formatters_by_ft = formatters_by_ft,
