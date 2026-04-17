@@ -95,6 +95,7 @@ require("lazyload").on_vim_enter(function()
     angularls = {
       capabilities = capabilities,
       root_markers = { "angular.json", "project.json" },
+      filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
     },
     graphql = {
       capabilities = capabilities,

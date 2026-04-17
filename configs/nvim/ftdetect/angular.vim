@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.component.html set filetype=angular
+au BufNewFile,BufRead *.component.html set filetype=htmlangular
