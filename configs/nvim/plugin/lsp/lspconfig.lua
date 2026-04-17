@@ -189,5 +189,6 @@ require("lazyload").on_vim_enter(function()
     end
 
     vim.lsp.config("csharp_ls", csharp_config)
+    vim.lsp.enable("csharp_ls")
   end
 end)
