@@ -165,6 +165,7 @@ require("lazyload").on_vim_enter(function()
 
   vim.lsp.config("angularls", {
     capabilities = capabilities,
+    root_markers = { "angular.json", "project.json" },
     filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
     cmd = function()
       local node_modules = vim.fn.getcwd() .. "/node_modules"
