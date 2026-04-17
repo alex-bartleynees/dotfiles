@@ -168,7 +168,12 @@ require("lazyload").on_vim_enter(function()
     root_markers = { "angular.json", "project.json" },
     filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
     cmd = function()
-      local node_modules = vim.fn.getcwd() .. "/node_modules"
+      local root = vim.fs.root(0, { "angular.json", "project.json" })
+      local project_node_modules = (root or vim.fn.getcwd()) .. "/node_modules"
+      local mason_node_modules = vim.fn.stdpath("data") .. "/mason/packages/angular-language-server/node_modules"
+      local node_modules = vim.fn.isdirectory(project_node_modules) == 1
+        and project_node_modules
+        or mason_node_modules
       return {
         "ngserver",
         "--stdio",
