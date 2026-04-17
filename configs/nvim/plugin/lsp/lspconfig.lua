@@ -92,22 +92,6 @@ require("lazyload").on_vim_enter(function()
         })
       end,
     },
-    angularls = {
-      capabilities = capabilities,
-      root_markers = { "angular.json", "project.json" },
-      filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
-      cmd = {
-        "ngserver",
-        "--stdio",
-        "--tsProbeLocations", "",
-        "--ngProbeLocations", "",
-      },
-      on_new_config = function(new_config, root_dir)
-        local node_modules = (root_dir or vim.fn.getcwd()) .. "/node_modules"
-        new_config.cmd[4] = node_modules
-        new_config.cmd[6] = node_modules
-      end,
-    },
     graphql = {
       capabilities = capabilities,
       filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
@@ -178,6 +162,21 @@ require("lazyload").on_vim_enter(function()
   for server, config in pairs(servers) do
     vim.lsp.config(server, config)
   end
+
+  -- angularls uses on_new_config which only fires via nvim-lspconfig's setup, not vim.lsp.config
+  require("lspconfig").angularls.setup({
+    capabilities = capabilities,
+    filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
+    on_new_config = function(new_config, root_dir)
+      local node_modules = (root_dir or vim.fn.getcwd()) .. "/node_modules"
+      new_config.cmd = {
+        "ngserver",
+        "--stdio",
+        "--tsProbeLocations", node_modules,
+        "--ngProbeLocations", node_modules,
+      }
+    end,
+  })
 
   if os.getenv("DOTNET_ROOT") or vim.fn.executable("dotnet") == 1 then
     vim.lsp.config("roslyn", {
