@@ -11,6 +11,7 @@ require("lazyload").on_vim_enter(function()
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
+    { src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
   })
 
@@ -18,6 +19,11 @@ require("lazyload").on_vim_enter(function()
   local actions = require("telescope.actions")
 
   telescope.setup({
+    extensions = {
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown(),
+      },
+    },
     defaults = {
       path_display = { "smart" },
       mappings = {
@@ -31,6 +37,7 @@ require("lazyload").on_vim_enter(function()
   })
 
   telescope.load_extension("fzf")
+  telescope.load_extension("ui-select")
 
   vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
   vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
