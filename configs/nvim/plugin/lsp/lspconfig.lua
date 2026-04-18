@@ -188,13 +188,4 @@ require("lazyload").on_vim_enter(function()
       })
     end,
   })
-
-  if os.getenv("DOTNET_ROOT") or vim.fn.executable("dotnet") == 1 then
-    vim.lsp.config("roslyn", {
-      capabilities = capabilities,
-      cmd = { "Microsoft.CodeAnalysis.LanguageServer", "--stdio" },
-      root_markers = { "*.sln", "*.csproj" },
-    })
-    vim.lsp.enable("roslyn")
-  end
 end)
