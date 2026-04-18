@@ -18,18 +18,9 @@ require("lazyload").on_vim_enter(function()
 
   require("blink.cmp").setup({
     keymap = {
-      preset = "none",
+      preset = "enter",
       ["<C-k>"] = { "select_prev", "fallback" },
       ["<C-j>"] = { "select_next", "fallback" },
-      ["<Up>"] = { "select_prev", "fallback" },
-      ["<Down>"] = { "select_next", "fallback" },
-      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-      ["<C-Space>"] = { "show", "fallback" },
-      ["<C-e>"] = { "hide", "fallback" },
-      ["<CR>"] = { "accept", "fallback" },
-      ["<Tab>"] = { "snippet_forward", "fallback" },
-      ["<S-Tab>"] = { "snippet_backward", "fallback" },
     },
     snippets = { preset = "luasnip" },
     sources = {
