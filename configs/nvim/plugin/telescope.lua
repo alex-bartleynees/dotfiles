@@ -1,11 +1,5 @@
 require("lazyload").on_vim_enter(function()
-  -- telescope-fzf-native is managed by Nix (pre-built, no make needed)
-  vim.pack.add({
-    { src = "https://github.com/nvim-telescope/telescope.nvim" },
-    { src = "https://github.com/nvim-lua/plenary.nvim" },
-    { src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
-    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-  })
+  -- telescope and its dependencies are managed by Nix
 
   local telescope = require("telescope")
   local actions = require("telescope.actions")
