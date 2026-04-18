@@ -163,17 +163,27 @@ require("lazyload").on_vim_enter(function()
     vim.lsp.config(server, config)
   end
 
-  local mason_node_modules = vim.fn.stdpath("data") .. "/mason/packages/angular-language-server/node_modules"
-  vim.lsp.config("angularls", {
-    capabilities = capabilities,
-    root_markers = { "angular.json", "project.json" },
-    filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
-    cmd = {
-      "ngserver",
-      "--stdio",
-      "--tsProbeLocations", mason_node_modules,
-      "--ngProbeLocations", mason_node_modules,
-    },
+  -- angularls requires per-project probe locations; vim.lsp.start is used directly
+  -- so the cmd is computed dynamically per buffer rather than stored statically
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "typescript", "html", "typescriptreact", "htmlangular" },
+    callback = function(ev)
+      local root = vim.fs.root(ev.buf, { "angular.json", "project.json" })
+      if not root then return end
+      local node_modules = root .. "/node_modules"
+      vim.lsp.start({
+        name = "angularls",
+        cmd = {
+          "ngserver",
+          "--stdio",
+          "--tsProbeLocations", node_modules,
+          "--ngProbeLocations", node_modules,
+        },
+        root_dir = root,
+        capabilities = capabilities,
+        filetypes = { "typescript", "html", "typescriptreact", "htmlangular" },
+      })
+    end,
   })
 
   if os.getenv("DOTNET_ROOT") or vim.fn.executable("dotnet") == 1 then

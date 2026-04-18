@@ -31,6 +31,11 @@ require("lazyload").on_vim_enter(function()
       "dockerls",
       "nil_ls",
     },
+    handlers = {
+      -- angularls is started manually via FileType autocommand in lspconfig.lua
+      -- to allow dynamic per-project probe locations
+      angularls = function() end,
+    },
   })
 
   require("mason-tool-installer").setup({
