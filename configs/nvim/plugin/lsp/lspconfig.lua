@@ -163,6 +163,8 @@ require("lazyload").on_vim_enter(function()
     vim.lsp.config(server, config)
   end
 
+  vim.lsp.enable(vim.tbl_keys(servers))
+
   -- angularls requires per-project probe locations; vim.lsp.start is used directly
   -- so the cmd is computed dynamically per buffer rather than stored statically
   vim.api.nvim_create_autocmd("FileType", {
