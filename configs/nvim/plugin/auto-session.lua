@@ -4,9 +4,8 @@ require("lazyload").on_vim_enter(function()
   })
 
   local function restore_nvim_tree()
-    local nvim_tree = require("nvim-tree")
     local api = require("nvim-tree.api")
-    nvim_tree.change_dir(vim.fn.getcwd())
+    api.tree.change_root(vim.fn.getcwd())
     api.tree.focus()
   end
 
