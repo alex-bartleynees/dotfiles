@@ -14,7 +14,6 @@ require("lazyload").on_vim_enter(function()
     json = { "prettier" },
     jsonc = { "prettier" },
     yaml = { "prettier" },
-    htmlangular = { "prettier" },
     markdown = { "prettier" },
     graphql = { "prettier" },
     liquid = { "prettier" },
