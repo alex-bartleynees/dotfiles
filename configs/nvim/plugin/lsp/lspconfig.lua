@@ -52,6 +52,11 @@ require("lazyload").on_vim_enter(function()
 
       opts.desc = "Restart LSP"
       vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+
+      local client = vim.lsp.get_client_by_id(ev.data.client_id)
+      if client and client.supports_method("textDocument/inlayHint") then
+        vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+      end
     end,
   })
 

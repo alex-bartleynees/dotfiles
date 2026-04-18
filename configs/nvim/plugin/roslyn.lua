@@ -9,6 +9,18 @@ require("lazyload").on_vim_enter(function()
 
     vim.lsp.config("roslyn", {
       capabilities = capabilities,
+      settings = {
+        ["csharp|formatting"] = {
+          dotnet_organize_imports_on_format = true,
+        },
+        ["csharp|inlay_hints"] = {
+          csharp_enable_inlay_hints_for_implicit_variable_types = true,
+          dotnet_enable_inlay_hints_for_parameters = true,
+          dotnet_enable_inlay_hints_for_literal_parameters = true,
+          dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+          dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+        },
+      },
     })
 
     require("roslyn").setup({
