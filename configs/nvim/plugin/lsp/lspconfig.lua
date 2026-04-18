@@ -168,9 +168,12 @@ require("lazyload").on_vim_enter(function()
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "typescript", "html", "typescriptreact", "htmlangular" },
     callback = function(ev)
-      local root = vim.fs.root(ev.buf, { "angular.json", "project.json" })
+      local root = vim.fs.root(ev.buf, { "angular.json", "project.json", "nx.json" })
       if not root then return end
-      local node_modules = root .. "/node_modules"
+      -- In NX workspaces node_modules is hoisted to the workspace root,
+      -- which may be above the per-app project.json root
+      local nm_root = vim.fs.root(ev.buf, "node_modules") or root
+      local node_modules = nm_root .. "/node_modules"
       vim.lsp.start({
         name = "angularls",
         cmd = {
