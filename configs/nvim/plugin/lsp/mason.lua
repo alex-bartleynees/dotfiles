@@ -1,1 +1,0 @@
--- LSP servers and formatters are managed by Nix (see modules/neovim.nix)

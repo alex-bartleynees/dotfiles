@@ -1,16 +1,12 @@
 require("lazyload").on_vim_enter(function()
   vim.pack.add({
     { src = "https://github.com/neovim/nvim-lspconfig" },
-    { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
     { src = "https://github.com/antosha417/nvim-lsp-file-operations" },
-    { src = "https://github.com/folke/neodev.nvim" },
   })
 
-  require("neodev").setup({})
   require("lsp-file-operations").setup()
 
-  local cmp_nvim_lsp = require("cmp_nvim_lsp")
-  local capabilities = cmp_nvim_lsp.default_capabilities()
+  local capabilities = require("blink.cmp").get_lsp_capabilities()
 
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),

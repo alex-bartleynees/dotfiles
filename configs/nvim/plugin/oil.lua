@@ -5,7 +5,6 @@ vim.g.loaded_netrwPlugin = 1
 require("lazyload").on_vim_enter(function()
   vim.pack.add({
     { src = "https://github.com/stevearc/oil.nvim" },
-    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
   })
 
   require("oil").setup({
