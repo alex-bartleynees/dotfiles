@@ -6,8 +6,8 @@ local keymap = vim.keymap -- for conciseness
 ---------------------
 -- General Keymaps -------------------
 
--- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+-- use hn to exit insert mode (colemak-dh home row)
+keymap.set("i", "hn", "<ESC>", { desc = "Exit insert mode with hn" })
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
@@ -38,7 +38,7 @@ keymap.set("n", "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>")
 keymap.set("n", "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>")
 keymap.set("n", "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>")
 keymap.set("n", "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>")
-keymap.set("n", "<C-Left>",  "<cmd>TmuxNavigateLeft<cr>")
+keymap.set("n", "<C-Left>", "<cmd>TmuxNavigateLeft<cr>")
 keymap.set("n", "<C-Right>", "<cmd>TmuxNavigateRight<cr>")
-keymap.set("n", "<C-Up>",    "<cmd>TmuxNavigateUp<cr>")
-keymap.set("n", "<C-Down>",  "<cmd>TmuxNavigateDown<cr>")
+keymap.set("n", "<C-Up>", "<cmd>TmuxNavigateUp<cr>")
+keymap.set("n", "<C-Down>", "<cmd>TmuxNavigateDown<cr>")

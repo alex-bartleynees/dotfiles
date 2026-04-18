@@ -6,7 +6,8 @@ require("lazyload").on_vim_enter(function()
 
   require("lsp-file-operations").setup()
 
-  local capabilities = require("blink.cmp").get_lsp_capabilities()
+  local ok, blink = pcall(require, "blink.cmp")
+  local capabilities = ok and blink.get_lsp_capabilities() or vim.lsp.protocol.make_client_capabilities()
 
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),

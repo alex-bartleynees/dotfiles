@@ -3,7 +3,8 @@ require("lazyload").on_vim_enter(function()
     { src = "https://github.com/seblyng/roslyn.nvim" },
   })
 
-  local capabilities = require("blink.cmp").get_lsp_capabilities()
+  local ok, blink = pcall(require, "blink.cmp")
+  local capabilities = ok and blink.get_lsp_capabilities() or vim.lsp.protocol.make_client_capabilities()
 
   if os.getenv("DOTNET_ROOT") or vim.fn.executable("dotnet") == 1 then
     vim.lsp.config("roslyn", {
