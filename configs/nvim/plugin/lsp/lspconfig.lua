@@ -168,7 +168,7 @@ require("lazyload").on_vim_enter(function()
   -- angularls requires per-project probe locations; vim.lsp.start is used directly
   -- so the cmd is computed dynamically per buffer rather than stored statically
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "typescript", "html", "typescriptreact" },
+    pattern = { "typescript", "html", "angularhtml", "typescriptreact" },
     callback = function(ev)
       local root = vim.fs.root(ev.buf, { "angular.json", "project.json", "nx.json" })
       if not root then return end
