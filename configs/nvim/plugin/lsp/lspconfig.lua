@@ -73,6 +73,10 @@ require("lazyload").on_vim_enter(function()
   local servers = {
     ts_ls = { capabilities = capabilities },
     html = { capabilities = capabilities },
+    angularls = {
+      capabilities = capabilities,
+      filetypes = { "typescript", "html", "htmlangular", "typescriptreact" },
+    },
     cssls = { capabilities = capabilities },
     tailwindcss = { capabilities = capabilities },
     prismals = { capabilities = capabilities },
@@ -165,29 +169,4 @@ require("lazyload").on_vim_enter(function()
 
   vim.lsp.enable(vim.tbl_keys(servers))
 
-  -- angularls requires per-project probe locations; vim.lsp.start is used directly
-  -- so the cmd is computed dynamically per buffer rather than stored statically
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "typescript", "html", "angularhtml", "typescriptreact" },
-    callback = function(ev)
-      local root = vim.fs.root(ev.buf, { "angular.json", "project.json", "nx.json" })
-      if not root then return end
-      -- In NX workspaces node_modules is hoisted to the workspace root,
-      -- which may be above the per-app project.json root
-      local nm_root = vim.fs.root(ev.buf, "node_modules") or root
-      local node_modules = nm_root .. "/node_modules"
-      vim.lsp.start({
-        name = "angularls",
-        cmd = {
-          "ngserver",
-          "--stdio",
-          "--tsProbeLocations", node_modules,
-          "--ngProbeLocations", node_modules,
-        },
-        root_dir = root,
-        capabilities = capabilities,
-        filetypes = { "typescript", "html", "typescriptreact" },
-      })
-    end,
-  })
 end)
