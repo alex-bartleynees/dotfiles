@@ -11,6 +11,7 @@ require("lazyload").on_vim_enter(function()
 		svelte = { "prettier" },
 		css = { "prettier" },
 		html = { "prettier" },
+		htmlangular = { "prettier" },
 		json = { "prettier" },
 		jsonc = { "prettier" },
 		yaml = { "prettier" },

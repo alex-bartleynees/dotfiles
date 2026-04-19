@@ -11,6 +11,7 @@ require("lazyload").on_vim_enter(function()
     javascriptreact = { "eslint_d" },
     typescriptreact = { "eslint_d" },
     svelte = { "eslint_d" },
+    htmlangular = { "eslint_d" },
     python = { "ruff" },
   }
 
