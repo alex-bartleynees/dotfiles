@@ -67,6 +67,8 @@ require("lazyload").on_vim_enter(function()
 
   local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
   vim.diagnostic.config({
+    virtual_text = true,
+    underline = true,
     signs = {
       text = {
         [vim.diagnostic.severity.ERROR] = signs.Error,
