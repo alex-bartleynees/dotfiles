@@ -9,6 +9,7 @@ set -euo pipefail
 HYPR_CONFIG="$HOME/.config/hypr/hyprland.conf"
 SWAY_CONFIG="$HOME/.config/sway/config"
 RIVER_CONFIG="$HOME/.config/river/init"
+MANGO_CONFIG="$HOME/.config/mango/config.conf"
 
 # Colors for formatting
 RESET='\033[0m'
@@ -244,6 +245,51 @@ parse_river() {
     done < "$config_file"
 }
 
+# Function to parse Mango keybindings
+parse_mango() {
+    local config_file="$1"
+
+    if [[ ! -f "$config_file" ]]; then
+        echo "Mango config not found: $config_file" >&2
+        return 1
+    fi
+
+    while IFS= read -r line; do
+        [[ $line =~ ^[[:space:]]*# ]] && continue
+        [[ -z "${line// }" ]] && continue
+
+        # Parse bind lines: bind=MODIFIER,KEY,ACTION[,PARAMS...]
+        if [[ $line =~ ^bind=(.+)$ ]]; then
+            local binding="${BASH_REMATCH[1]}"
+            IFS=',' read -ra PARTS <<< "$binding"
+
+            if [[ ${#PARTS[@]} -ge 3 ]]; then
+                local modifier="${PARTS[0]}"
+                local key="${PARTS[1]}"
+                local action="${PARTS[2]}"
+                local params=""
+
+                if [[ ${#PARTS[@]} -gt 3 ]]; then
+                    params=$(IFS=','; echo "${PARTS[*]:3}")
+                    params="${params# }"
+                fi
+
+                local keys=""
+                if [[ "$modifier" == "none" ]]; then
+                    keys="$key"
+                else
+                    keys="$modifier $key"
+                fi
+
+                local full_action="$action"
+                [[ -n "$params" ]] && full_action="$action $params"
+
+                printf "%s → %s\n" "$keys" "$full_action"
+            fi
+        fi
+    done < "$config_file"
+}
+
 # Function to get current desktop environment
 get_current_desktop() {
     # Check XDG_CURRENT_DESKTOP first
@@ -259,6 +305,8 @@ get_current_desktop() {
         echo "sway"
     elif pgrep -x "river" > /dev/null; then
         echo "river"
+    elif pgrep -x "mango" > /dev/null; then
+        echo "mango"
     else
         echo "unknown"
     fi
@@ -284,6 +332,10 @@ show_in_rofi() {
             config_file="$RIVER_CONFIG"
             title="River Keybindings"
             ;;
+        mango*)
+            config_file="$MANGO_CONFIG"
+            title="Mango Keybindings"
+            ;;
         *)
             echo "Unsupported desktop environment: $desktop" >&2
             exit 1
@@ -302,6 +354,9 @@ show_in_rofi() {
             ;;
         river*)
             parse_river "$config_file" | sort > "$temp_file"
+            ;;
+        mango*)
+            parse_mango "$config_file" | sort > "$temp_file"
             ;;
     esac
     

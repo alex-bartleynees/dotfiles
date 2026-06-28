@@ -38,6 +38,8 @@ get_compositor() {
         echo "hyprland"
     elif [[ "$XDG_CURRENT_DESKTOP" == "sway" ]] || pgrep -x sway > /dev/null; then
         echo "sway"
+    elif [[ "$XDG_CURRENT_DESKTOP" == "mango" ]]; then
+        echo "mango"
     else
         echo "unknown"
     fi
@@ -71,6 +73,9 @@ run_lock() {
             else
                 echo "Sway lock script not found"
             fi
+            ;;
+        "mango")
+            hyprlock
             ;;
         *)
             echo "Unknown compositor, cannot lock"
