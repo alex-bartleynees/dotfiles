@@ -1,15 +1,17 @@
 {
-  "modules-left": ["ext/workspaces", "dwl/window#title", "dwl/window#layout"],
-  "ext/workspaces": {
+  "modules-left": ["mango/workspaces", "mango/window", "mango/layout"],
+  "mango/workspaces": {
     "format": "{icon}",
-    "ignore-hidden": true,
+    "hide-empty": true,
     "on-click": "activate",
-    "sort-by-id": true
+    "on-click-right": "toggle",
+    "overview-label": "OVERVIEW"
   },
-  "dwl/window#layout": {
-    "format": "[{layout}]"
+  "mango/window": {
+    "format": "{}",
+    "icon-size": 20
   },
-  "dwl/window#title": {
-    "format": "{title}"
+  "mango/layout": {
+    "format": "{}"
   }
 }
