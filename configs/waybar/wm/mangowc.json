@@ -12,6 +12,20 @@
     "icon-size": 20
   },
   "mango/layout": {
-    "format": "{}"
+    "format": "{symbol}",
+    "format-T": "Tile",
+    "format-S": "Scroller",
+    "format-G": "Grid",
+    "format-M": "Monocle",
+    "format-K": "Deck",
+    "format-CT": "Center Tile",
+    "format-RT": "Right Tile",
+    "format-VS": "Vertical Scroller",
+    "format-VT": "Vertical Tile",
+    "format-VG": "Vertical Grid",
+    "format-VK": "Vertical Deck",
+    "format-DW": "Dwindle",
+    "format-F": "Fair",
+    "format-VF": "Vertical Fair"
   }
 }
